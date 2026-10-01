@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex">
+<title>404 — null pointer | Bureau Null</title>
+<meta name="description" content="The page you requested does not exist. Return to Bureau Null.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--void:#060608;--panel:#0e0e12;--border:#1e1e28;--text:#e8e8ec;--dim:#9a9aa8;--violet:#00e676}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--void);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
+main{text-align:center;padding:40px 24px;max-width:720px}
+.code{font-family:'JetBrains Mono',monospace;font-size:clamp(4rem,14vw,9rem);font-weight:700;line-height:1;background:linear-gradient(115deg,#f4f4f7 0%,#9a9aa8 28%,#ececf2 50%,#78788a 72%,#dcdce4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.trace{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--dim);margin:22px 0 8px;letter-spacing:1px}
+.trace b{color:var(--violet);font-weight:500}
+h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:600;margin:18px 0 12px}
+p{color:var(--dim);font-size:.95rem;line-height:1.7;max-width:52ch;margin:0 auto 34px}
+nav{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+a.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;transition:.3s;border:1px solid var(--border);color:var(--text)}
+a.btn:hover{border-color:var(--violet);color:var(--violet)}
+a.btn.primary{background:var(--violet);color:var(--void);border-color:var(--violet)}
+a.btn.primary:hover{background:#33ff99;color:var(--void)}
+.caret{display:inline-block;width:9px;height:1.1em;background:var(--violet);vertical-align:text-bottom;animation:blink 1s steps(2) infinite;margin-left:6px}
+@keyframes blink{50%{opacity:0}}
+</style>
+</head>
+<body>
+<main>
+  <div class="code">404</div>
+  <div class="trace">BN://router — <b>null pointer exception</b> · requested resource not in address space<span class="caret"></span></div>
+  <h1>This page does not exist. Our work does.</h1>
+  <p>The URL you followed points nowhere — but everything we actually ship is one click away: sixteen-plus years of client work, published prices, and a security practice that tests what it builds.</p>
+  <nav>
+    <a class="btn primary" href="index.html">Back to base →</a>
+    <a class="btn" href="work.html">See the work</a>
+    <a class="btn" href="security.html">Security audits</a>
+    <a class="btn" href="index.html#contact">Tell us what you were looking for →</a>
+  </nav>
+</main>
+</body>
+</html>

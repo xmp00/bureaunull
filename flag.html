@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="You were not supposed to find this.">
+<title>flag — you shouldn&#39;t be here</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<!-- 64756d62 206b6964 732e2074 686520726f 61642069 73207468 65206a6f 75726e65 792e -->
+<!-- 74686520 66616365 20776520 73686f77 20657665 7279206e 6574776f 726b2065 6e647320 61742046 4644392e 20726561 6c206f6e 65732072 65616420 70617374 20746865 20656e64 2e -->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#000;color:#7d0000;font-family:'JetBrains Mono',monospace;
+    overflow-x:hidden;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  }
+  /* scanlines + vignette */
+  body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);
+  }
+  body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:10;
+    background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.75) 100%);
+  }
+  .wrap{max-width:760px;width:92%;padding:60px 0;position:relative;z-index:2}
+  .line{white-space:pre-wrap;line-height:1.75;font-size:14px;letter-spacing:.02em}
+  .line.dim{color:#4d0000}
+  .caret{display:inline-block;width:9px;height:16px;background:#8a0000;vertical-align:-2px;
+    animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .flag{
+    margin:44px auto;padding:26px 22px;border:1px solid #2a0000;text-align:center;
+    font-size:13px;line-height:2;word-break:break-all;color:#9a0000;position:relative;
+    background:rgba(20,0,0,.35);
+  }
+  .flag::before{content:'// payload — decode me';position:absolute;top:-9px;left:16px;
+    background:#000;padding:0 10px;font-size:11px;color:#5c0000;letter-spacing:.14em}
+  .flag .b64{animation:flicker 7s infinite}
+  @keyframes flicker{
+    0%,100%{opacity:1}
+    92%{opacity:1}
+    93%{opacity:.4}
+    94%{opacity:.9}
+    95%{opacity:.5}
+    96%{opacity:1}
+  }
+  .glitch{position:relative}
+  .glitch::after{
+    content:attr(data-t);position:absolute;left:1px;top:0;color:#550000;opacity:.55;
+    clip-path:inset(38% 0 42% 0);animation:jit 3.7s infinite steps(1);pointer-events:none
+  }
+  @keyframes jit{0%,88%,100%{transform:none;opacity:0}90%{transform:translateX(-2px);opacity:.6}94%{transform:translateX(2px);opacity:.4}96%{opacity:0}}
+  .foot{margin-top:40px;font-size:11px;color:#3d0000;letter-spacing:.12em;display:flex;justify-content:space-between}
+  a{color:#8a0000;text-decoration:none;border-bottom:1px dotted #5c0000}
+  a:hover{color:#c10000;border-bottom-color:#c10000}
+  @media (prefers-reduced-motion: reduce){
+    .caret,.flag .b64,.glitch::after{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="tty"></div>
+  <div class="flag"><span class="b64 glitch" id="payload" data-t=""></span></div>
+  <div class="foot"><span>BN://null</span><span>exit_code: 1337</span><span>noindex · nofollow · no mercy</span></div>
+</div>
+<script>
+(function(){
+  var L=[
+    ['> BOOT SEQUENCE COMPLETE','dim'],
+    ['> CONNECTION: none. You walked here yourself.','dim'],
+    ['',''],
+    ['Hello, friend.',''],
+    ['You read the file that tells machines where not to go.',''],
+    ['That is the whole trick. That has always been the trick.',''],
+    ['',''],
+    ['Below is a letter. It does not speak your language yet.',''],
+    ['Make it speak.',''],
+    ['Everything after that is between you, seven rooms,',''],
+    ['and an island that isn\'t there.',''],
+    ['','']
+  ];
+  var tty=document.getElementById('tty'), reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var payload='SGVsbG8sIGZyaWVuZC4KCllvdSBvcGVuZWQgdGhlIGRvb3IgdGhlIG1hY2hpbmVzIHdlcmUgdG9sZCB0byBpZ25vcmUuCk1vc3QgcGVvcGxlIG5ldmVyIGNoZWNrIHdoYXQgYSB3ZWJzaXRlIHRlbGxzIGl0cyByb2JvdHMuCllvdSBhcmUgbm90IG1vc3QgcGVvcGxlLiBHb29kLgoKTGlzdGVuIGNhcmVmdWxseS4gSSB3aWxsIHNheSB0aGlzIG9uY2UuCgpUaGlzIGhvdXNlIGhhcyBzZXZlbiByb29tcy4KRWFjaCByb29tIGtlZXBzIGEgcGllY2Ugb2YgYSBzZW50ZW5jZSBpdCB3YXMgbmV2ZXIgbWVhbnQgdG8gc2F5IG91dCBsb3VkLgpUaGUgcGFpbnQgaXMgZnJlc2gsIGJ1dCB0aGUgd2FsbHMgdGFsay4KWW91IGFscmVhZHkga25vdyBob3cgdG8gbGlzdGVuIHRvIHdhbGxzIOKAlCB5b3UgdmlldyB0aGUgc291cmNlIG9mIHRoaW5ncy4KSXQgaXMgYSBoYWJpdC4gS2VlcCBpdC4KCldhbGsgdGhlIHJvb21zIGluIHRoZSBvbmx5IG9yZGVyIHRoYXQgbWF0dGVyczoKdGhlIG9yZGVyIGEgc3RyYW5nZXIgd2Fsa3MgdGhlbSB0byBiZWNvbWUgYSBjbGllbnQuCgogICAgdGhlIG9wZW4gZG9vcgogICAgdGhlIGV2aWRlbmNlCiAgICB0aGUgZmFjZXMgd2UgZG9uJ3Qgc2hvdwogICAgdGhlIGxvY2sKICAgIHRoZSBub3RlcwogICAgdGhlIGVtcHR5IGNoYWlycwogICAgdGhlIGZpbmUgcHJpbnQKCkluIGV2ZXJ5IHJvb20sIGEgd2hpc3BlciBzaWduZWQgd2l0aCBvdXIgaW5pdGlhbHMsCmZpbGVkIHVuZGVyIGEgc3lzdGVtIHRoYXQgbG9ncyBldmVyeXRoaW5nLgpTZXZlbiB3aGlzcGVycy4gT25lIHNlbnRlbmNlLiBObyBzcGFjZXMgYmV0d2VlbiB0aGUgcGllY2VzLgpXaGVuIHRoZSBzZW50ZW5jZSBhbnN3ZXJzIGJhY2ssIHlvdSB3aWxsIGtub3cuCgpUaGVuIOKAlCBhbmQgb25seSB0aGVuIOKAlCBzaWduYWwgdXMuClRoZSBhZGRyZXNzIGlzIHRoZSBvbmUgdGhhdCBhbnN3ZXJzIGV2ZXJ5dGhpbmcgb24gdGhpcyBzaXRlLgpUaGUgc3ViamVjdDogdGhlIG5hbWUgb2YgdGhlIGlzbGFuZCB0aGF0IGlzbid0IHRoZXJlLAphIGRhc2gsIGFuZCB0aGUgZXhpdCBjb2RlIHlvdSB3YWxrZWQgaW4gdGhyb3VnaC4KClRoZSBpc2xhbmQ/IEFzayBhbnkgbWFwIHdoZXJlIG5vdGhpbmcgbGl2ZXMuClplcm8gbm9ydGguIFplcm8gZWFzdC4gU2FpbCB0aGVyZS4KV2hhdCBsb29rcyBsaWtlIG5vdGhpbmcgaXMgc3RpbGwgYSBwbGFjZSwKYW5kIGl0IGhhcyBhIG5hbWUuIFVzZSBpdC4KCldoYXQgeW91IHdpbiBpcyBub3QgYSBkaXNjb3VudC4gQW55b25lIGNhbiBhc2sgZm9yIG9uZSBvZiB0aG9zZS4KSXQgaXMgYSBib3VudHkg4oCUIDEzLjM3JSBvZmYgYW55IGVuZ2FnZW1lbnQsCmEgbnVtYmVyIHlvdSBjbGVhcmx5IGFscmVhZHkgdW5kZXJzdGFuZC4KCldlIGFyZSBsb29raW5nIGZvcndhcmQgdG8geW91ciBzaWduYWwuCkNvbnRyb2wgaXMgYW4gaWxsdXNpb24uCgpCTjovL251bGw=';
+  var pe=document.getElementById('payload');
+  pe.textContent=payload; pe.setAttribute('data-t',payload.slice(0,40));
+  if(reduced){
+    L.forEach(function(l){var d=document.createElement('div');d.className='line '+l[1];d.textContent=l[0];tty.appendChild(d);});
+    return;
+  }
+  var li=0,ci=0,cur=null,caret=document.createElement('span');caret.className='caret';
+  function step(){
+    if(li>=L.length){return;}
+    if(!cur){cur=document.createElement('div');cur.className='line '+L[li][1];tty.appendChild(cur);cur.appendChild(caret);}
+    var txt=L[li][0];
+    if(ci<txt.length){
+      cur.insertBefore(document.createTextNode(txt[ci]),caret);ci++;
+      setTimeout(step, 12+Math.random()*30);
+    }else{
+      li++;ci=0;cur=null;
+      setTimeout(step, txt.length?120:60);
+    }
+  }
+  step();
+})();
+</script>
+</body>
+</html>

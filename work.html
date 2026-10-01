@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Work — Bureau Null | Selected Projects 2010-2026</title>
+<meta name="description" content="16+ years of digital infrastructure. 50+ projects. From industrial chemical supply to cybersecurity dashboards.">
+<link rel="canonical" href="https://bureaunull.com/work.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bureau Null">
+<meta property="og:title" content="Work — Bureau Null | Selected Projects 2010-2026">
+<meta property="og:description" content="16+ years of digital infrastructure. 50+ projects. From industrial chemical supply to cybersecurity dashboards.">
+<meta property="og:url" content="https://bureaunull.com/work.html">
+<meta property="og:image" content="https://bureaunull.com/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="624">
+<meta property="og:image:alt" content="Bureau Null — websites that win clients. Design, code, security.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Work — Bureau Null | Selected Projects 2010-2026">
+<meta name="twitter:description" content="16+ years of digital infrastructure. 50+ projects. From industrial chemical supply to cybersecurity dashboards.">
+<meta name="twitter:image" content="https://bureaunull.com/images/og.jpg">
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<style>
+:root{--void:#060608;--panel:#0e0e12;--border:#1e1e28;--text:#e8e8ec;--dim:#9a9aa8;--violet:#00e676;--terminal:#00e676;--caution:#00e676;--alert:#ff0040;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--void);color:var(--text);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--violet);color:var(--void)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--dim)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all .5s;border-bottom:1px solid transparent;background:rgba(6,6,8,.8);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+nav.scrolled{padding:16px 0}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--text)}
+.logo span{background:linear-gradient(120deg,#f4f4f7 0%,#9a9aa8 30%,#e8e8ee 50%,#78788a 70%,#dcdce4 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:logoShine 7s linear infinite}
+@keyframes logoShine{to{background-position:200% center}}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--dim);transition:.3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--violet);transition:.4s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 24px;border:1px solid var(--violet);font-size:.85rem;font-weight:600;color:var(--violet);transition:.4s;font-family:'JetBrains Mono',monospace}
+.nav-cta:hover{background:var(--violet);color:var(--void)}
+
+.display{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+h1{font-size:clamp(3rem,7vw,6rem)}
+h2{font-size:clamp(1.5rem,3vw,2.5rem)}
+.label{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+section{padding:120px 0}
+
+.hero-work{padding:150px 0 40px}
+.hero-work .label{color:var(--violet);margin-bottom:24px;display:block}
+.hero-work h1{margin-bottom:20px}
+.hero-work p{color:var(--dim);font-size:1.1rem;max-width:560px;line-height:1.7}
+
+.timeline{position:relative;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.year-group{margin-bottom:80px;position:relative}
+.year-group::before{content:'';position:absolute;left:-34px;top:8px;width:9px;height:9px;background:var(--violet);border-radius:50%;border:2px solid var(--void)}
+.year-label{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--violet);margin-bottom:30px;display:block}
+
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.work-card{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:4px;transition:.5s;background:var(--panel)}
+.work-card:hover{border-color:var(--violet);transform:translateY(-6px)}
+.work-card-img{aspect-ratio:4/3;overflow:hidden;background:var(--void);position:relative}
+.work-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.19,1,.22,1)}
+.work-card:hover .work-card-img img{transform:scale(1.08)}
+.work-card-img .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:3rem;color:var(--border)}
+.work-card-info{padding:24px}
+.work-card-info .label{margin-bottom:10px;display:block}
+.work-card-info h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;margin-bottom:8px}
+.work-card-info p{color:var(--dim);font-size:.88rem;line-height:1.6;margin-bottom:16px}
+.work-card-meta{display:flex;gap:12px;flex-wrap:wrap}
+.work-card-meta span{padding:4px 10px;border:1px solid var(--border);font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--dim);border-radius:3px}
+.work-card-status{margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:.8rem;color:var(--dim)}
+.work-card-status .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px}
+.status-active{background:var(--terminal)}
+.status-archive{background:var(--caution)}
+.status-dead{background:var(--alert)}
+.status-dev{background:var(--violet);animation:devPulse 1.6s ease-in-out infinite}
+@keyframes devPulse{0%,100%{opacity:1}50%{opacity:.25}}
+.dev-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border:1px solid var(--violet);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:2px;color:var(--violet)}
+.dev-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--violet);animation:devPulse 1.6s ease-in-out infinite}
+a.work-card{display:block;color:inherit}
+a.work-card .card-link{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--violet);display:inline-block;margin-top:4px}
+.btn{padding:14px 32px;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;transition:.4s;border-radius:3px;display:inline-block}
+.btn-primary{border:1px solid var(--violet);color:var(--violet)}
+.btn-primary:hover{background:var(--violet);color:var(--void)}
+.work-cta{border:1px solid var(--border);border-radius:4px;background:var(--panel);padding:64px 48px;text-align:center}
+.work-cta .label{color:var(--violet);margin-bottom:16px;display:block}
+.work-cta h2{margin-bottom:28px}
+@media(max-width:600px){.work-cta{padding:48px 24px}}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.19,1,.22,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+@media(max-width:960px){
+.work-grid{grid-template-columns:1fr 1fr}
+.nav-links{display:none}
+}
+@media(max-width:600px){
+.work-grid{grid-template-columns:1fr}
+.timeline{padding-left:20px}
+.year-group::before{left:-24px}
+}
+
+.footer{padding:90px 0 40px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px}
+.footer-brand .logo{font-size:1.4rem;margin-bottom:16px;display:inline-block}
+.footer-brand p{color:var(--dim);font-size:.92rem;line-height:1.7;max-width:320px}
+.footer-col h4{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:20px}
+.footer-col a{display:block;color:var(--dim);margin-bottom:10px;font-size:.88rem;transition:.3s}
+.footer-col a:hover{color:var(--violet)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--dim);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:12px}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="brand.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "CollectionPage",
+ "name": "Work — Bureau Null | Selected Projects 2010-2026",
+ "description": "16+ years of digital infrastructure. 50+ projects. From industrial chemical supply to cybersecurity dashboards.",
+ "url": "https://bureaunull.com/work.html"
+}
+</script>
+</head>
+<body data-step="1">
+
+<!--
+  ~$ ls /var/www/portfolio/
+  > 2010_nikachem/
+  > 2012_sti/
+  > 2013_atelier/
+  > 2015_volkova/
+  > 2016_nordstream/
+  > 2017_blackwood/
+  > 2018_axiom/
+  > 2019_cipher/
+  > 2020_vanguard/
+  > 2021_meridian/
+  > 2022_apex/
+  > 2023_horizon/
+  > 2024_securecloud/
+  > 2025_atlas/
+  > 2026_slamen/
+  > 2026_rovenia/
+  > 
+  ~$ du -sh /var/www/portfolio/
+  > 16+ years. 50+ deployments. 0 templates.
+-->
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Bureau<span>Null</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="security.html">Security</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="nav-cta" href="index.html#pricing">Start a project</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero-work step">
+  <div class="wrap">
+    <span class="label">/var/log/portfolio.log</span>
+    <h1 class="display">Selected work.<br>2010 — 2026.</h1>
+    <p>Every project here was built by hand, deployed with precision, and measured by the only metric that matters: did it make the client money?</p>
+  </div>
+</section>
+
+<section class="step" style="padding-top:0">
+  <div class="wrap">
+    <div class="timeline">
+
+      <div class="year-group reveal">
+        <span class="year-label">2010</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2010-nikachem.html">
+            <div class="work-card-img">
+              <img src="images/case_01_nikachem.jpg" alt="NikaChem Distribution" width="1536" height="1024">
+            </div>
+            <div class="work-card-info">
+              <span class="label">B2B E-Commerce</span>
+              <h3>NikaChem Distribution</h3><span class="card-link">NikaChem B2B e-commerce case study &rarr;</span>
+              <p>Industrial chemical supply platform with wholesale pricing tiers, MSDS document management, and dealer locator.</p>
+              <div class="work-card-meta">
+                <span>Custom CMS</span>
+                <span>PHP</span>
+                <span>MySQL</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-dead"></span>Decommissioned 2018 — business pivoted to retail</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2012</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2012-sti.html">
+            <div class="work-card-img">
+              <img src="images/case_02_sti.jpg" alt="STI Group — FMCG distribution platform" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">FMCG / Corporate</span>
+              <h3>STI Group</h3><span class="card-link">STI Group FMCG dealer portal case study &rarr;</span>
+              <p>Dual-purpose platform for a Chelyabinsk trading house. Public catalogue + password-protected dealer portal with real-time stock.</p>
+              <div class="work-card-meta">
+                <span>1C Integration</span>
+                <span>Dealer Portal</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-dead"></span>Dissolved 2019 — domain expired</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2013</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2013-atelier-mirage.html">
+            <div class="work-card-img">
+              <img src="images/case_03_atelier.jpg" alt="Atelier Mirage" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Luxury Interior</span>
+              <h3>Atelier Mirage</h3><span class="card-link">Atelier Mirage luxury interior portfolio case study &rarr;</span>
+              <p>Parisian luxury interior studio. Editorial portfolio with French localization, press archive, and client mood boards.</p>
+              <div class="work-card-meta">
+                <span>Editorial</span>
+                <span>Paris</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-archive"></span>Merged 2020 — site archived</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2015</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2015-volkova-photography.html">
+            <div class="work-card-img">
+              <div class="placeholder" style="background:linear-gradient(135deg,#2d1b2e,#1f1f3a)">KV</div>
+            </div>
+            <div class="work-card-info">
+              <span class="label">Fine Art / Portrait</span>
+              <h3>Katerina Volkova Photography</h3><span class="card-link">Katerina Volkova photography portfolio case study &rarr;</span>
+              <p>Editorial portfolio with lazy-loading masonry grid, EXIF metadata display, and password-protected client galleries.</p>
+              <div class="work-card-meta">
+                <span>JavaScript</span>
+                <span>Gallery</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-archive"></span>Photographer relocated — archived</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2016</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2016-nordstream-logistics.html">
+            <div class="work-card-img">
+              <img src="images/case_05_nordstream.jpg" alt="NordStream Logistics — freight platform" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Logistics / B2B</span>
+              <h3>NordStream Logistics</h3><span class="card-link">NordStream Logistics freight platform case study &rarr;</span>
+              <p>Baltic freight forwarder with route calculator, multi-language support, and third-party API integration for tracking.</p>
+              <div class="work-card-meta">
+                <span>API</span>
+                <span>Multi-language</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2017</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2017-blackwood-estate.html">
+            <div class="work-card-img">
+              <img src="images/case_07_blackwood.jpg" alt="Blackwood Estate" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Spirits / Brand</span>
+              <h3>Blackwood Estate</h3><span class="card-link">Blackwood Estate whisky brand case study &rarr;</span>
+              <p>Premium whisky brand with age-gate, stockist locator, tasting notes CMS, and limited-release countdown engine.</p>
+              <div class="work-card-meta">
+                <span>CMS</span>
+                <span>E-commerce</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2018</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2018-axiom-architecture.html">
+            <div class="work-card-img">
+              <img src="images/case_08_axiom.jpg" alt="Axiom Architecture" width="1184" height="864" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Architecture</span>
+              <h3>Axiom Architecture</h3><span class="card-link">Axiom Architecture 3D portfolio case study &rarr;</span>
+              <p>Architectural visualization firm with 3D project viewer, awards section, and international press coverage archive.</p>
+              <div class="work-card-meta">
+                <span>3D</span>
+                <span>WebGL</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2019</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2019-cipher-medical.html">
+            <div class="work-card-img">
+              <div class="placeholder" style="background:linear-gradient(135deg,#1e3c72,#2a5298)">CM</div>
+            </div>
+            <div class="work-card-info">
+              <span class="label">Healthcare</span>
+              <h3>Cipher Medical</h3><span class="card-link">Cipher Medical healthcare portal case study &rarr;</span>
+              <p>Healthcare portal with HIPAA-aligned structure, appointment booking, and patient document management.</p>
+              <div class="work-card-meta">
+                <span>Portal</span>
+                <span>Compliance</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2020</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2020-vanguard-wast.html">
+            <div class="work-card-img">
+              <div class="placeholder" style="background:linear-gradient(135deg,#3a1c71,#d76d77)">VG</div>
+            </div>
+            <div class="work-card-info">
+              <span class="label">Security Audit</span>
+              <h3>Vanguard Security (WAST)</h3><span class="card-link">Vanguard WAST security audit case study &rarr;</span>
+              <p>First external Web Application Security Test. OWASP testing, CVSS scoring, and remediation roadmap.</p>
+              <div class="work-card-meta">
+                <span>OWASP</span>
+                <span>WAST</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Completed — annual retainer active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-bottom:80px">
+        <div class="work-cta" style="padding:44px 32px">
+          <span class="label">// convinced already? the calendar fills first-come</span>
+          <a class="btn btn-primary" href="index.html#pricing">Configure your project &rarr;</a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2021</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2021-meridian-capital.html">
+            <div class="work-card-img">
+              <img src="images/case_10_meridian.jpg" alt="Meridian Capital — fintech landing" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Fintech</span>
+              <h3>Meridian Capital</h3><span class="card-link">Meridian Capital fintech landing case study &rarr;</span>
+              <p>Fintech landing with trust signals, regulatory compliance copy, and lead qualification funnel.</p>
+              <div class="work-card-meta">
+                <span>Landing</span>
+                <span>Conversion</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2022</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2022-apex-network.html">
+            <div class="work-card-img">
+              <div class="placeholder" style="background:linear-gradient(135deg,#232526,#414345)">AX</div>
+            </div>
+            <div class="work-card-info">
+              <span class="label">Network Pentest</span>
+              <h3>Apex Network</h3><span class="card-link">Apex Network penetration test case study &rarr;</span>
+              <p>Network penetration test across segmented corporate network. 15 targets. Lateral movement. Privilege escalation.</p>
+              <div class="work-card-meta">
+                <span>Network</span>
+                <span>Pentest</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Completed — critical findings patched</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2023</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2023-horizon-osint.html">
+            <div class="work-card-img">
+              <div class="placeholder" style="background:linear-gradient(135deg,#000428,#004e92)">HZ</div>
+            </div>
+            <div class="work-card-info">
+              <span class="label">OSINT / Intelligence</span>
+              <h3>Horizon OSINT</h3><span class="card-link">Horizon OSINT investigation case study &rarr;</span>
+              <p>Corporate intelligence investigation from open sources. Due diligence report for M&A transaction.</p>
+              <div class="work-card-meta">
+                <span>OSINT</span>
+                <span>Intelligence</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Completed — report delivered</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2024</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2024-securecloud.html">
+            <div class="work-card-img">
+              <img src="images/case_13_securecloud.jpg" alt="SecureCloud" width="1184" height="864" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Cybersecurity SaaS</span>
+              <h3>SecureCloud Audit Platform</h3><span class="card-link">SecureCloud security SaaS dashboard case study &rarr;</span>
+              <p>Frontend for automated vulnerability scanner. Real-time CVSS dashboard, PDF report generator, multi-tenancy.</p>
+              <div class="work-card-meta">
+                <span>React</span>
+                <span>D3.js</span>
+                <span>97 Lighthouse</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2025</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2025-atlas-construction.html">
+            <div class="work-card-img">
+              <div class="placeholder" style="background:linear-gradient(135deg,#3d2b1f,#8b5a2b)">AC</div>
+            </div>
+            <div class="work-card-info">
+              <span class="label">Construction / UK</span>
+              <h3>Atlas Construction</h3><span class="card-link">Atlas Construction enterprise site case study &rarr;</span>
+              <p>24-page enterprise site for UK builder. Multi-location support, team profiles, and automated lead routing.</p>
+              <div class="work-card-meta">
+                <span>Enterprise</span>
+                <span>Lead Automation</span>
+              </div>
+              <div class="work-card-status"><span class="dot status-active"></span>Active</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="year-group reveal">
+        <span class="year-label">2026</span>
+        <div class="work-grid">
+          <a class="work-card" href="cases/2026-roveniabakes.html">
+            <div class="work-card-img">
+              <img src="images/case_16_rovenia.jpg" alt="RoveniaBakes — craft home bakery storefront, Ireland" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Retail / Food — Ireland</span>
+              <h3>RoveniaBakes</h3><span class="card-link">RoveniaBakes craft bakery storefront case study &rarr;</span>
+              <p>Etsy-born home bakery going direct — warm, craft-first storefront in build.</p>
+              <div class="work-card-meta">
+                <span>E-commerce</span>
+                <span>Hand-coded</span>
+              </div>
+              <div class="work-card-status"><span class="dev-badge" style="margin-top:2px">IN DEVELOPMENT</span></div>
+            </div>
+          </a>
+          <a class="work-card" href="cases/2026-slamen-carpentry.html">
+            <div class="work-card-img">
+              <img src="images/case_15_slamen.jpg" alt="Slamen Carpentry" width="1536" height="1024" loading="lazy" decoding="async">
+            </div>
+            <div class="work-card-info">
+              <span class="label">Construction / Ireland</span>
+              <h3>Slamen Carpentry</h3><span class="card-link">Slamen Carpentry local SEO case study &rarr;</span>
+              <p>Premium digital presence for Roscommon's leading builder — WebGL galleries, before/after sliders, local SEO. Currently in build.</p>
+              <div class="work-card-meta">
+                <span>WebGL</span>
+                <span>Local SEO</span>
+                <span>Schema</span>
+              </div>
+              <div class="work-card-status"><span class="dev-badge" style="margin-top:2px">IN DEVELOPMENT</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px;padding-bottom:120px">
+  <div class="wrap">
+    <div class="work-cta reveal">
+      <span class="label">// your project</span>
+      <h2 class="display">Sixteen shown. Fifty-plus shipped. Yours could be next.</h2>
+      <a class="btn btn-primary" href="index.html#contact">Start a project &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Bureau<span>Null</span></a>
+        <p>A small, senior team designing, hand-coding and security-testing websites for clients worldwide. Serious goals, serious budgets — available anywhere.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="security.html">Security</a>
+        <a href="journal.html">Journal</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="policies.html#terms">Terms of Service</a>
+        <a href="policies.html#payment">Payment Terms</a>
+        <a href="policies.html#refund">Refund Policy</a>
+        <a href="policies.html#privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@bureaunull.com">hello@bureaunull.com</a>
+        <a href="index.html#contact">Contact form</a>
+        <span style="color:var(--dim);font-size:.85rem;display:block;margin-top:8px">Response within 4 working hours. Worldwide.</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Bureau Null. All rights reserved.</div>
+      <div>No cookies · No trackers · No ads &nbsp;·&nbsp; ~$ exit 0</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); obs.unobserve(e.target); } });
+}, {threshold: .1});
+reveals.forEach(el => obs.observe(el));
+</script>
+
+<script src="brand.js"></script>
+
+<!-- BN/SYSLOG :: left among the evidence. proof is the second room. :: GgzX2o :: walk the path a client walks — the journey is the order -->
+</body>
+</html>

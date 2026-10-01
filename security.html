@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Security Audits &amp; Penetration Testing — Bureau Null | Ireland</title>
+<meta name="description" content="Web application security audits and penetration tests for Irish SMBs — from €1,500. OWASP Top 10, CVSS-scored reports, plain-English fix roadmaps. HTB Pro Labs practitioners — Dante completed, CPTS track in progress.">
+<meta property="og:title" content="Security — Bureau Null">
+<meta property="og:description" content="Your website is secure. Until it is not. Audits from €1,500 — enterprise-grade testing without enterprise overhead.">
+<link rel="canonical" href="https://bureaunull.com/security.html">
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","serviceType":"Web Application Security Testing","provider":{"@type":"ProfessionalService","name":"Bureau Null","email":"hello@bureaunull.com"},"areaServed":"Worldwide","offers":{"@type":"Offer","priceCurrency":"EUR","price":"1500","description":"Web Application Security Test, OWASP Top 10 coverage, CVSS-scored report"}}
+</script>
+<style>
+:root{--void:#060608;--panel:#0e0e12;--border:#1e1e28;--text:#e8e8ec;--dim:#9a9aa8;--violet:#ff0040;--terminal:#00e676;--caution:#ff9100;--red:#ef4444;--alert:#ff0040;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--void);color:var(--text);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--alert);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--dim)}
+
+.noise{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+.scanline{position:fixed;inset:0;pointer-events:none;z-index:9997;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.1) 50%);background-size:100% 4px;opacity:.3}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all .5s;border-bottom:1px solid transparent;background:rgba(6,6,8,.8);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+nav.scrolled{padding:16px 0}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--text)}
+.logo span{background:linear-gradient(120deg,#f4f4f7 0%,#9a9aa8 30%,#e8e8ee 50%,#78788a 70%,#dcdce4 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:logoShine 7s linear infinite}
+@keyframes logoShine{to{background-position:200% center}}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--dim);transition:.3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--alert);transition:.4s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 24px;border:1px solid var(--alert);font-size:.85rem;font-weight:600;color:var(--alert);transition:.4s;font-family:'JetBrains Mono',monospace}
+.nav-cta:hover{background:var(--alert);color:#fff}
+
+.display{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+h1{font-size:clamp(2.8rem,6.5vw,6rem)}
+h2{font-size:clamp(1.8rem,3.5vw,3rem)}
+h3{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600}
+.label{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.mono{font-family:'JetBrains Mono',monospace}
+/* Metallic / holographic */
+.holo{background:linear-gradient(115deg,#f4f4f7 0%,#9a9aa8 28%,#ececf2 50%,#78788a 72%,#dcdce4 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:holoShift 8s linear infinite}
+@keyframes holoShift{to{background-position:300% center}}
+.metal-panel{position:relative;overflow:hidden}
+.svc-card.featured.metal-panel{overflow:visible}
+.metal-panel::after{content:'';position:absolute;inset:0;background:url('images/metal.jpg') center/cover;opacity:.10;mix-blend-mode:screen;pointer-events:none}
+.holo-border{position:relative}
+.holo-border::before{content:'';position:absolute;inset:0;border-radius:4px;padding:1px;background:linear-gradient(130deg,rgba(244,244,247,.55),rgba(255,0,64,.5),rgba(154,154,168,.35),rgba(255,0,64,.45),rgba(244,244,247,.55));background-size:300% 300%;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:holoShift 10s linear infinite;pointer-events:none}
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+section{position:relative;padding:120px 0;scroll-snap-align:start}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:600;transition:.4s;cursor:pointer;border:none}
+.btn-primary{background:var(--alert);color:#fff}
+.btn-primary:hover{background:#ff2d5e}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--alert);color:var(--alert)}
+.btn.disabled{background:var(--border);color:var(--dim);cursor:not-allowed;pointer-events:none}
+
+/* STAGE 1 — HERO */
+.hero-sec{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:160px 0 80px;overflow:hidden}
+.hero-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,0,64,.08),transparent 70%);pointer-events:none}
+.hero-sec .label{color:var(--alert);margin-bottom:24px;display:block;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-sec h1{margin-bottom:28px}
+.hero-sec h1 .line{display:block;overflow:hidden}
+.hero-sec h1 .line-inner{display:block;transform:translateY(110%)}
+.hero-subhead{color:var(--dim);font-size:1.15rem;line-height:1.7;max-width:580px;margin-bottom:36px}
+.hero-subhead strong{color:var(--text);font-weight:600}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.hero-note{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--dim)}
+
+/* STAGE 1b — WIIFM stats */
+.wiifm{padding:90px 0;background:var(--panel);border-top:1px solid var(--border)}
+.wiifm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.wiifm-card{padding:36px;border:1px solid var(--border);border-radius:4px;position:relative;overflow:hidden;transition:.4s}
+.wiifm-card:hover{border-color:var(--alert)}
+.wiifm-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--alert);opacity:.5}
+.wiifm-card .num{font-family:'JetBrains Mono',monospace;font-size:2.6rem;font-weight:700;color:var(--alert);line-height:1;margin-bottom:10px}
+.wiifm-card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+.wiifm-card p{color:var(--dim);font-size:.9rem;line-height:1.65;margin-bottom:14px}
+.wiifm-card .wiifm-line{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--terminal);border-top:1px dashed var(--border);padding-top:12px}
+
+/* STAGE 2 — Threats */
+.threat{padding:130px 0}
+.threat-header{max-width:720px;margin-bottom:70px}
+.threat-header h2{margin-top:16px}
+.threat-header p{color:var(--dim);margin-top:18px;font-size:1.02rem;line-height:1.7}
+.threat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.threat-card{padding:34px 30px 30px;border:1px solid var(--border);border-radius:2px;transition:.5s;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.015),transparent);overflow:hidden}
+.threat-card::before,.threat-card::after{content:'';position:absolute;width:14px;height:14px;transition:.4s;opacity:.55}
+.threat-card::before{top:8px;left:8px;border-top:1px solid var(--alert);border-left:1px solid var(--alert)}
+.threat-card::after{bottom:8px;right:8px;border-bottom:1px solid var(--alert);border-right:1px solid var(--alert)}
+.threat-card .scanbar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--alert),transparent);transform:translateX(-100%);transition:transform 1.1s cubic-bezier(.19,1,.22,1)}
+.threat-card:hover{border-color:rgba(255,0,64,.5);background:linear-gradient(180deg,rgba(255,0,64,.04),transparent);transform:translateY(-4px)}
+.threat-card:hover .scanbar{transform:translateX(100%)}
+.threat-card:hover::before,.threat-card:hover::after{opacity:1}
+.threat-card .icon{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--alert);margin-bottom:18px;display:inline-block;padding:8px 12px;border:1px solid var(--border);border-radius:2px;background:rgba(255,0,64,.06)}
+.threat-card h3{margin-bottom:10px;font-size:1.1rem}
+.threat-card p{color:var(--dim);font-size:.9rem;line-height:1.7}
+.threat-card .stat{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--terminal);margin-top:14px;display:block;border-top:1px dashed var(--border);padding-top:12px}
+
+/* STAGE 3 — Cost of doing nothing */
+.roi{padding:130px 0;background:var(--panel);border-top:1px solid var(--border)}
+.roi-header{max-width:720px;margin-bottom:60px}
+.roi-header h2{margin-top:16px}
+.roi-header p{color:var(--dim);margin-top:16px;font-size:1rem;line-height:1.7}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.roi-calc{padding:40px;border:1px solid var(--border);border-radius:4px;background:var(--void)}
+.roi-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--border)}
+.roi-row strong{font-weight:600;font-size:.95rem}
+.roi-row small{display:block;color:var(--dim);font-size:.78rem;font-weight:400;margin-top:2px}
+.roi-row .mono{color:var(--alert);font-weight:700;white-space:nowrap}
+.roi-total{padding-top:26px;margin-top:18px;border-top:2px solid var(--alert);text-align:center}
+.roi-total .price{font-family:'JetBrains Mono',monospace;font-size:2.4rem;font-weight:700;color:var(--terminal)}
+.roi-total p{color:var(--dim);margin-top:8px;font-size:.9rem}
+.roi-frameworks h3{margin-bottom:18px}
+.roi-frameworks p{color:var(--dim);margin-bottom:16px;line-height:1.8}
+.fw-list{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.fw-item{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:16px 18px;border:1px solid var(--border);border-radius:4px;align-items:baseline}
+.fw-item b{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--terminal);font-weight:600}
+.fw-item span{color:var(--dim);font-size:.88rem;line-height:1.6}
+
+/* STAGE 4 — Open pricing */
+.pricing-sec{padding:130px 0}
+.pricing-header{max-width:760px;margin-bottom:26px}
+.pricing-header h2{margin-top:16px}
+.pricing-header p{color:var(--dim);margin-top:18px;font-size:1.02rem;line-height:1.75}
+.pricing-header p strong{color:var(--text)}
+.atelier-note{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:50px 0 70px}
+.atelier-item{padding:26px;border:1px solid var(--border);border-radius:4px}
+.atelier-item .k{font-family:'JetBrains Mono',monospace;color:var(--terminal);font-size:.8rem;margin-bottom:10px;display:block}
+.atelier-item p{color:var(--dim);font-size:.9rem;line-height:1.65}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.svc-card{padding:36px;border:1px solid var(--border);border-radius:4px;display:flex;flex-direction:column;transition:.4s;position:relative;background:var(--void)}
+.svc-card:hover{border-color:var(--alert);transform:translateY(-6px)}
+.svc-card.featured{border-color:var(--alert)}
+.svc-card .flag{position:absolute;top:-11px;left:24px;background:var(--alert);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;padding:4px 12px;letter-spacing:1px;z-index:6;box-shadow:0 4px 14px rgba(255,0,64,.35)}
+.svc-card .label{margin-bottom:14px;display:block;color:var(--alert)}
+.svc-card h3{font-size:1.35rem;margin-bottom:8px}
+.svc-card .price{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;margin-bottom:6px}
+.svc-card .price small{display:block;font-size:.78rem;color:var(--dim);font-weight:400;margin-top:4px}
+.svc-card .for{color:var(--dim);font-size:.85rem;margin-bottom:20px;line-height:1.6}
+.svc-card ul{list-style:none;margin-bottom:26px;flex:1}
+.svc-card li{padding:9px 0 9px 26px;border-bottom:1px solid var(--border);color:var(--dim);font-size:.88rem;position:relative;line-height:1.5}
+.svc-card li::before{content:'▸';position:absolute;left:4px;color:var(--terminal)}
+.svc-card .btn{justify-content:center}
+
+/* STAGE 5 — Competition */
+.competitors{padding:130px 0;background:var(--panel);border-top:1px solid var(--border)}
+.competitors-header{max-width:720px;margin-bottom:60px}
+.competitors-header h2{margin-top:16px}
+.competitors-header p{color:var(--dim);margin-top:16px;line-height:1.7}
+.comp-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.comp-table th{padding:16px 14px;text-align:left;background:var(--void);border-bottom:2px solid var(--alert);font-weight:600;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--dim)}
+.comp-table td{padding:15px 14px;border-bottom:1px solid var(--border);color:var(--dim);vertical-align:top}
+.comp-table tr:hover td{background:rgba(255,0,64,.02)}
+.comp-table .name{font-weight:600;color:var(--text)}
+.comp-table .check{color:var(--terminal);font-family:'JetBrains Mono',monospace}
+.comp-table .na{color:#3a3a44}
+.comp-table .win td{background:rgba(0,230,118,.04);border-top:2px solid var(--terminal);border-bottom:2px solid var(--terminal)}
+.comp-table .win .name{color:var(--terminal)}
+.comp-note{margin-top:26px;color:var(--dim);font-size:.85rem;font-family:'JetBrains Mono',monospace}
+
+/* EVIDENCE — sample finding */
+.evidence{padding:130px 0;border-top:1px solid var(--border)}
+.evidence-header{max-width:760px;margin-bottom:56px}
+.evidence-header h2{margin-top:16px}
+.evidence-header p{color:var(--dim);margin-top:16px;line-height:1.7}
+.finding{max-width:880px;border:1px solid var(--border);border-radius:4px;background:var(--panel);padding:34px 36px;font-family:'JetBrains Mono',monospace}
+.finding-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.f-id{color:var(--dim);font-size:.85rem}
+.f-sev{color:var(--alert);font-size:.85rem;font-weight:700;letter-spacing:1px}
+.f-title{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:22px}
+.f-row{display:grid;grid-template-columns:90px 1fr;gap:18px;padding:12px 0;border-top:1px dashed var(--border);font-size:.82rem}
+.f-row .f-k{color:var(--terminal);letter-spacing:1.5px}
+.f-row .f-v{color:var(--dim);line-height:1.7}
+.f-row .f-v code{color:var(--text);background:var(--void);padding:1px 6px;border-radius:3px}
+.f-row.f-retest .f-v{color:var(--terminal)}
+.evidence-lines{max-width:880px;margin-top:34px;display:flex;flex-direction:column;gap:12px}
+.evidence-lines p{color:var(--dim);font-size:.92rem;line-height:1.7;padding-left:18px;border-left:2px solid var(--alert)}
+.roe{max-width:880px;margin-top:44px;padding:28px 30px;border:1px solid var(--border);border-radius:4px;background:var(--void)}
+.roe .k{font-family:'JetBrains Mono',monospace;color:var(--terminal);font-size:.8rem;display:block;margin-bottom:12px}
+.roe p{color:var(--dim);font-size:.92rem;line-height:1.7;margin-bottom:10px}
+.roe p:last-child{margin-bottom:0}
+.case-links{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:880px;margin-top:34px}
+.case-links a{padding:16px 20px;border:1px solid var(--border);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--dim);transition:.3s}
+.case-links a:hover{border-color:var(--alert);color:var(--text)}
+@media(max-width:960px){.case-links{grid-template-columns:1fr}.f-row{grid-template-columns:1fr;gap:6px}}
+
+/* CALCULATOR */
+.calc-section{padding:130px 0}
+.calc-header{text-align:center;margin-bottom:56px}
+.calc-header h2{margin:16px 0}
+.calc-header p{color:var(--dim);max-width:56ch;margin:0 auto;line-height:1.7}
+.calc-container{max-width:920px;margin:0 auto;border:1px solid var(--border);border-radius:4px;background:var(--panel);padding:44px}
+.calc-row{padding:20px 0;border-bottom:1px solid var(--border)}
+.calc-row-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.calc-label{display:flex;flex-direction:column;gap:4px}
+.calc-label .t{display:flex;align-items:center;gap:8px}
+.calc-label strong{font-weight:600;font-size:1rem}
+.info-btn{width:20px;height:20px;border:1px solid var(--border);border-radius:50%;background:transparent;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.68rem;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.info-btn:hover{border-color:var(--alert);color:var(--alert)}
+.calc-label span{font-size:.85rem;color:var(--dim)}
+.calc-control{display:flex;align-items:center;gap:16px}
+.calc-control select{background:var(--void);color:var(--text);border:1px solid var(--border);padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:.85rem;cursor:pointer;border-radius:3px}
+.calc-control input[type="range"]{width:180px;-webkit-appearance:none;height:4px;background:var(--border);border-radius:2px;outline:none}
+.calc-control input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--alert);border-radius:50%;cursor:pointer}
+.calc-value{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--text);min-width:44px;text-align:right}
+.calc-toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
+.calc-toggle input{-webkit-appearance:none;width:44px;height:24px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:.3s;flex-shrink:0}
+.calc-toggle input::after{content:'';position:absolute;width:20px;height:20px;background:var(--dim);border-radius:50%;top:2px;left:2px;transition:.3s}
+.calc-toggle input:checked{background:var(--alert)}
+.calc-toggle input:checked::after{left:22px;background:#fff}
+.calc-info{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.19,1,.22,1),margin .3s}
+.calc-info.open{max-height:340px;margin-top:16px}
+.calc-info-inner{padding:16px 20px;background:var(--void);border-left:2px solid var(--alert);border-radius:0 4px 4px 0;font-size:.88rem;color:var(--dim);line-height:1.7}
+.calc-info-inner strong{color:var(--text)}
+.calc-info-inner em{color:var(--terminal);font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.8rem}
+.calc-total{text-align:center;padding-top:34px;margin-top:8px;border-top:2px solid var(--alert)}
+.calc-total .price{font-family:'JetBrains Mono',monospace;font-size:3rem;font-weight:700;color:var(--text);line-height:1;margin-top:12px}
+.calc-total .price-note{color:var(--dim);font-size:.85rem;margin-top:10px}
+.calc-total .compare{color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.82rem;margin-top:10px}
+.calc-total .compare s{color:var(--alert)}
+.calc-total .savings{color:var(--terminal);font-family:'JetBrains Mono',monospace;font-size:.9rem;margin-top:8px;opacity:0;transition:.3s}
+.calc-total .savings.visible{opacity:1}
+.calc-cta{margin-top:28px;text-align:center}
+.calc-cta .hint{display:block;margin-top:12px;font-size:.78rem;color:var(--dim);font-family:'JetBrains Mono',monospace}
+.calc-note{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--terminal);margin-top:14px}
+.calc-note a{color:var(--terminal);text-decoration:underline}
+.calc-note.dim{color:var(--dim)}
+.policy-gate{margin-top:26px;padding:22px;border:1px solid var(--border);border-radius:4px;background:var(--void)}
+.policy-check{display:flex;align-items:flex-start;gap:14px;cursor:pointer}
+.policy-check input{-webkit-appearance:none;width:22px;height:22px;border:1px solid var(--border);border-radius:3px;cursor:pointer;position:relative;flex-shrink:0;margin-top:2px;transition:.3s;background:var(--panel)}
+.policy-check input:checked{background:var(--terminal);border-color:var(--terminal)}
+.policy-check input:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--void);font-weight:700;font-size:.85rem}
+.policy-check .txt{font-size:.88rem;color:var(--dim);line-height:1.6}
+.policy-check .txt a{color:var(--alert)}
+
+/* OBJECTIONS */
+.objections{padding:130px 0;background:var(--panel);border-top:1px solid var(--border)}
+.objections-header{max-width:680px;margin-bottom:60px}
+.objections-header h2{margin-top:16px}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.obj-card{padding:30px;border:1px solid var(--border);border-radius:4px;background:var(--void)}
+.obj-card .q{font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:12px;color:var(--text);font-size:1.08rem}
+.obj-card .q::before{content:'" '}.obj-card .q::after{content:' "'}
+.obj-card .a{color:var(--dim);font-size:.93rem;line-height:1.7}
+.obj-card .a strong{color:var(--terminal)}
+.obj-more-wrap{margin-top:26px}
+#objMore{display:none}
+#objMore.open{display:grid}
+.obj-toggle{margin:34px auto 0;display:flex;align-items:center;gap:10px;background:none;border:1px solid var(--border);color:var(--dim);padding:14px 30px;font-family:'JetBrains Mono',monospace;font-size:.82rem;cursor:pointer;transition:.3s;border-radius:4px}
+.obj-toggle:hover{border-color:var(--alert);color:var(--alert)}
+.obj-toggle .arr{transition:transform .3s}
+.obj-toggle.open .arr{transform:rotate(180deg)}
+
+/* CLOSE */
+.close-sec{padding:140px 0;background:linear-gradient(180deg,var(--void),rgba(255,0,64,.06))}
+.close-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start}
+.close-steps{display:flex;flex-direction:column}
+.close-step{display:grid;grid-template-columns:70px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--border)}
+.close-step:first-child{border-top:1px solid var(--border)}
+.close-step .n{font-family:'JetBrains Mono',monospace;color:var(--alert);font-size:.95rem;padding-top:3px}
+.close-step h4{font-size:1.05rem;margin-bottom:6px}
+.close-step p{color:var(--dim);font-size:.9rem;line-height:1.65}
+.close-panel h2{margin-bottom:22px}
+.close-panel p{color:var(--dim);line-height:1.8;margin-bottom:18px}
+.close-panel p strong{color:var(--text)}
+.close-cta-box{margin-top:30px;padding:34px;border:1px solid var(--alert);border-radius:4px;background:rgba(255,0,64,.04);text-align:center}
+.close-cta-box .label{color:var(--alert);display:block;margin-bottom:14px}
+.close-cta-box .btn{width:100%;justify-content:center}
+.close-cta-box .sub{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--dim)}
+
+/* FOOTER */
+.footer{padding:100px 0 40px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:70px}
+.footer-brand .logo{font-size:1.4rem;margin-bottom:16px;display:inline-block}
+.footer-brand p{color:var(--dim);font-size:.95rem;line-height:1.7;max-width:320px}
+.footer-col .f-head{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:20px}
+.footer-col a{display:block;color:var(--dim);margin-bottom:10px;font-size:.9rem;transition:.3s}
+.footer-col a:hover{color:var(--alert)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--dim);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:12px}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.19,1,.22,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}html{scroll-snap-type:none}}
+
+@media(max-width:960px){
+.wiifm-grid,.threat-grid,.svc-grid,.atelier-note,.obj-grid{grid-template-columns:1fr}
+.roi-grid,.close-grid{grid-template-columns:1fr}
+.nav-links{display:none}
+.comp-table{font-size:.8rem}
+.comp-table th,.comp-table td{padding:10px 8px}
+.calc-container{padding:26px}
+.footer-grid{grid-template-columns:1fr 1fr}
+html{scroll-snap-type:none}
+}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}.fw-item{grid-template-columns:1fr;gap:6px}}
+</style>
+<link rel="stylesheet" href="brand.css">
+</head>
+<body data-step="1">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!--
+  ~$ nmap -sV bureaunull.com
+  > PORT   STATE SERVICE VERSION
+  > 443/tcp open  https   Bureau Null Secure Gateway
+  >
+  ~$ ssh redacted@bureaunull.com
+  > authentication: publickey
+  > clearance: LEVEL 4
+  >
+  ~$ grep -r "vulnerability" /var/log/security/
+  > 0 results found. Logs show what already happened — never what's next.
+  >
+  ~$ cat /etc/motd
+  > There are two kinds of companies:
+  > those who have been tested, and those who have been hacked.
+-->
+
+<div class="noise"></div>
+<div class="scanline"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Bureau<span>Null</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="security.html">Security</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="nav-cta" href="#configure">Configure your audit</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+<!-- STAGE 1 · ATTENTION -->
+<section class="hero-sec step" id="top">
+  <div class="wrap">
+    <span class="label">>> ALERT: UNPATCHED ASSET DETECTED — YOURS</span>
+    <h1 class="display">
+      <span class="line"><span class="line-inner">Your website</span></span>
+      <span class="line"><span class="line-inner">is secure.</span></span>
+      <span class="line"><span class="line-inner">Until it <span class="holo">is not.</span></span></span>
+    </h1>
+    <p class="hero-subhead">43% of cyberattacks target small businesses. <strong>88% of SMB breaches involve ransomware.</strong> You lock your office every night. Your website — the door that never closes — has probably never been tested. <strong>We test it the way criminals would, then hand you the fix.</strong></p>
+    <div class="hero-btns">
+      <a href="#configure" class="btn btn-primary">Configure your audit ↓</a>
+      <a href="#pricing-sec" class="btn btn-outline">See pricing — openly</a>
+    </div>
+    <span class="hero-note">// audits from €1,500 · fixed quotes · NDA on request · response within 4 working hours</span>
+  </div>
+</section>
+
+<!-- STAGE 1b · WIIFM STATS -->
+<section class="wiifm step">
+  <div class="wrap">
+    <h2 class="visually-hidden">The numbers behind the risk</h2>
+    <div class="wiifm-grid">
+      <div class="wiifm-card reveal">
+        <div class="num">$3.31M</div>
+        <h3>What one breach costs a company your size</h3>
+        <p>IBM Cost of a Data Breach 2025, organisations under 500 staff (figure in USD): response, downtime, lost clients, legal fallout.</p>
+        <div class="wiifm-line">→ Your move: an audit from €1,500 covers roughly 0.05% of that risk. Once.</div>
+      </div>
+      <div class="wiifm-card reveal">
+        <div class="num">43%</div>
+        <h3>Of attacks aim at small businesses — not enterprises</h3>
+        <p>Verizon DBIR. Attackers automate: bots scan every IP on the internet, 24/7, looking for exactly your stack — WordPress, contact forms, old plugins.</p>
+        <div class="wiifm-line">→ Your move: being small makes you the target. Being tested makes you the wrong target.</div>
+      </div>
+      <div class="wiifm-card reveal">
+        <div class="num">194 days</div>
+        <h3>Average time just to identify a breach</h3>
+        <p>IBM Cost of a Data Breach 2024. Over six months of quiet access: your client list, your invoices, your email — copied while you work.</p>
+        <div class="wiifm-line">→ Your move: one audit tells you today what you would otherwise learn in six months.</div>
+      </div>
+      <div class="wiifm-card reveal">
+        <div class="num">1 in 5</div>
+        <h3>Small firms attacked every year</h3>
+        <p>Hiscox Cyber Readiness Report tracking shows roughly one in five small businesses suffering an attack annually. Most SMB breaches are never disclosed — the client just quietly leaves.</p>
+        <div class="wiifm-line">→ Your move: a documented audit is the due-diligence evidence insurers and regulators ask for.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 2 · AGITATION -->
+<section class="threat step" id="threats">
+  <div class="wrap">
+    <div class="threat-header reveal">
+      <span class="label">Threat landscape · 2024–2026</span>
+      <h2 class="display">What is already<br>knocking on your door.</h2>
+      <p>These are not theoretical risks. They are the six attack vectors we see in real engagements with Irish and European small businesses.</p>
+    </div>
+    <div class="threat-grid">
+      <div class="threat-card reveal"><span class="scanbar"></span>
+        <div class="icon">!</div>
+        <h3>AI-Powered Phishing</h3>
+        <p>AI-written phishing costs 95% less to launch and fools 5x more people. Deepfake voice fraud hit $25M in a single 2024 case.</p>
+        <span class="stat">+340% growth in 2025</span>
+      </div>
+      <div class="threat-card reveal"><span class="scanbar"></span>
+        <div class="icon">$</div>
+        <h3>Ransomware Economics</h3>
+        <p>Average recovery: €120,000. Downtime costs your revenue per hour — plus every client who can't reach you. 96% of attacks go for your backups first. Paying is the beginning, not the end.</p>
+        <span class="stat">88% of SMB breaches</span>
+      </div>
+      <div class="threat-card reveal"><span class="scanbar"></span>
+        <div class="icon">@</div>
+        <h3>Business Email Compromise</h3>
+        <p>$55 billion lost in a decade. One spoofed "updated bank details" email. Average loss per incident: $4.67M at enterprise, fatal at SMB scale.</p>
+        <span class="stat">73% target SMBs</span>
+      </div>
+      <div class="threat-card reveal"><span class="scanbar"></span>
+        <div class="icon">#</div>
+        <h3>Credential Stuffing</h3>
+        <p>2.8 billion passwords are on sale right now. If anyone on your team reuses a password, the attacker is already inside — they just haven't acted yet.</p>
+        <span class="stat">22% of all breaches</span>
+      </div>
+      <div class="threat-card reveal"><span class="scanbar"></span>
+        <div class="icon">%</div>
+        <h3>Human Error</h3>
+        <p>95% of incidents trace back to one click. Training cuts risk 7x. Most small businesses train their staff never.</p>
+        <span class="stat">68% = one staff mistake</span>
+      </div>
+      <div class="threat-card reveal"><span class="scanbar"></span>
+        <div class="icon">&lt;/&gt;</div>
+        <h3>Web Application Exploits</h3>
+        <p>Outdated plugins, exposed admin panels, SQL injection in the contact form. A third of SMB breaches walk straight through the website.</p>
+        <span class="stat">OWASP Top 10 territory</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 3 · COST OF DOING NOTHING -->
+<section class="roi step" id="cost">
+  <div class="wrap">
+    <div class="roi-header reveal">
+      <span class="label">The maths of waiting</span>
+      <h2 class="display">The cost of doing nothing.</h2>
+      <p>Every framework, regulator and insurer on the planet says the same thing: test before you are tested. Here is what "later" actually costs.</p>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-calc reveal">
+        <div class="roi-row"><strong>Average SMB breach cost<small>IBM Cost of a Data Breach 2025 — sub-500 staff, USD</small></strong><span class="mono">$3,310,000</span></div>
+        <div class="roi-row"><strong>Ransomware recovery<small>excluding the ransom itself</small></strong><span class="mono">€120,000</span></div>
+        <div class="roi-row"><strong>Downtime, per hour<small>your revenue per hour — plus every client who can't reach you</small></strong><span class="mono">your number</span></div>
+        <div class="roi-row"><strong>GDPR exposure<small>up to 4% of turnover — Irish DPC enforces actively</small></strong><span class="mono">€20M cap</span></div>
+        <div class="roi-row"><strong>Clients lost after a public breach<small>they never send an email to explain why</small></strong><span class="mono">65%</span></div>
+        <div class="roi-row"><strong>Cyber-insurance claim<small>denied without documented due diligence</small></strong><span class="mono">€0 paid out</span></div>
+        <div class="roi-total">
+          <div class="label">BUREAU NULL AUDIT — FROM</div>
+          <div class="price">€1,500</div>
+          <p>One-time. Fixed quote. CVSS-scored report. Fix roadmap.<br>That is 0.05% of the average breach cost.</p>
+        </div>
+      </div>
+      <div class="roi-frameworks reveal">
+        <h3>Not our opinion. The industry's.</h3>
+        <p>Every serious security framework mandates exactly what we sell. When a regulator, insurer or enterprise client asks "have you been tested?", these are the standards they mean:</p>
+        <div class="fw-list">
+          <div class="fw-item"><b>NIST CSF 2.0</b><span>Identify → Protect → Detect. Step one is knowing your weaknesses — that is the audit.</span></div>
+          <div class="fw-item"><b>ISO/IEC 27001</b><span>Requires regular vulnerability assessment. Enterprise clients increasingly demand it from suppliers.</span></div>
+          <div class="fw-item"><b>OWASP ASVS</b><span>The verification standard our web application tests are structured against.</span></div>
+          <div class="fw-item"><b>PTES</b><span>Penetration Testing Execution Standard — the methodology for our manual testing phases.</span></div>
+          <div class="fw-item"><b>CVSS 4.0</b><span>Every finding we deliver is scored on the industry-standard severity scale. No vagueness.</span></div>
+          <div class="fw-item"><b>GDPR Art. 32</b><span>"Regular testing and evaluation of technical measures" is a legal obligation for anyone holding EU personal data.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 4 · SOLUTION + OPEN PRICING -->
+<section class="pricing-sec step" id="pricing-sec">
+  <div class="wrap">
+    <div class="pricing-header reveal">
+      <span class="label">Services &amp; pricing — in the open</span>
+      <h2 class="display">Enterprise-grade testing.<br>Without feeding the enterprise.</h2>
+      <p>Security firms quote €8,000–€25,000 for the scope below because you pay for their sales teams, account managers, certifications theatre and marble offices. <strong>We are an atelier: you pay for senior hands and a report you can act on.</strong> That is why our prices are published, fixed, and realistic for a business your size.</p>
+    </div>
+    <div class="atelier-note reveal">
+      <div class="atelier-item"><span class="k">// no sales department</span><p>The person who quotes your audit is the person who performs it. Nothing is lost in handoffs, nothing is padded in margins.</p></div>
+      <div class="atelier-item"><span class="k">// no enterprise overhead</span><p>No offices, no account managers, no vendor kickbacks. The invoice is labour and expertise — nothing else.</p></div>
+      <div class="atelier-item"><span class="k">// plain-English reports</span><p>Every finding: what it is, why it matters to your business, how to fix it. CVSS-scored, ranked by real risk.</p></div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card featured reveal metal-panel holo-border">
+        <span class="flag">MOST BOOKED</span>
+        <span class="label">WAST</span>
+        <h3>Web Application Security Test</h3>
+        <div class="price">€1,500 – €4,500 <small>fixed quote</small><small>€1,500 covers a single small site/app; larger scopes quoted up to €4,500 — fixed before work begins</small></div>
+        <p class="for">For any business with a website, web shop or client portal — built by us or by anyone else.</p>
+        <ul>
+          <li>Full OWASP Top 10 coverage, manual + automated</li>
+          <li>Findings scored in CVSS 4.0 — 3.1 vectors provided on request for insurer and procurement compatibility</li>
+          <li>Every finding also carries a separate business-priority rating, explained in plain English</li>
+          <li>Plain-English report + developer fix roadmap</li>
+          <li>One verification pass covering critical and high fixes within 30 days — closed with a signed retest attestation suitable for procurement and insurers</li>
+          <li>Structured per OWASP ASVS / PTES methodology</li>
+        </ul>
+        <a href="#configure" class="btn btn-primary">Configure this audit ↓</a>
+      </div>
+      <div class="svc-card reveal">
+        <span class="label">ADD-ON / STANDALONE</span>
+        <h3>Manual Penetration Test</h3>
+        <div class="price">+€1,200 <small>or from €2,400 standalone</small></div>
+        <p class="for">Deeper than any audit: we attack your existing website the way a motivated criminal would — by hand.</p>
+        <p class="for">WAST is breadth: every OWASP category checked, every finding listed. A pentest is depth: we pick a business objective — steal the client list, bypass payment — and prove or disprove it end-to-end.</p>
+        <ul>
+          <li>Authenticated session &amp; privilege-escalation attacks</li>
+          <li>Business-logic abuse: discounts, refunds, quotas</li>
+          <li>Chained exploits — small bugs combined into breach</li>
+          <li>Your own site, your own stack, white-box or black-box</li>
+          <li>Evidence captured for every successful attack path</li>
+        </ul>
+        <a href="#configure" class="btn btn-outline">Add to my audit ↓</a>
+      </div>
+      <div class="svc-card reveal">
+        <span class="label">INTELLIGENCE</span>
+        <h3>OSINT Exposure Scan</h3>
+        <div class="price">€600 <small>fixed</small></div>
+        <p class="for">What can an attacker learn about your company without ever touching your servers? More than you think.</p>
+        <ul>
+          <li>Credential exposure across public breach corpora, stealer-log channels and monitored dark-web sources — collection methods documented in the report</li>
+          <li>Exposed documents, metadata, forgotten subdomains</li>
+          <li>Staff footprint: social, forums, breach databases</li>
+          <li>Attack-surface map of everything public</li>
+          <li>Prioritised clean-up checklist</li>
+        </ul>
+        <a href="#configure" class="btn btn-outline">Map my exposure ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGE 5 · PROOF -->
+<section class="competitors step" id="compare">
+  <div class="wrap">
+    <div class="competitors-header reveal">
+      <span class="label">The Irish market, honestly mapped</span>
+      <h2 class="display">Compare us.<br>That is the point.</h2>
+      <p>We checked the market before we priced ourselves. Enterprise firms do excellent work — for enterprise budgets. If you are a 5–200 person business, the comparison looks like this:</p>
+    </div>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="comp-table">
+        <tr>
+          <th>Provider</th>
+          <th>Typical entry</th>
+          <th>SMB-friendly</th>
+          <th>Manual web pentest</th>
+          <th>Plain-English report</th>
+          <th>Builds &amp; secures</th>
+        </tr>
+        <tr><td class="name">Global MSSPs</td><td>Enterprise contracts</td><td class="na">—</td><td class="check">✓</td><td class="na">—</td><td class="na">—</td></tr>
+        <tr><td class="name">Enterprise consultancies</td><td>€10,000+ engagements</td><td class="na">—</td><td class="check">✓</td><td class="na">—</td><td class="na">—</td></tr>
+        <tr><td class="name">Subscription scanning platforms</td><td>Annual subscription</td><td class="na">—</td><td class="check">✓</td><td class="check">✓</td><td class="na">—</td></tr>
+        <tr><td class="name">Traditional pentest boutiques</td><td>Quote-only</td><td class="check">✓</td><td class="check">✓</td><td class="na">—</td><td class="na">—</td></tr>
+        <tr class="win"><td class="name">Bureau Null</td><td>€1,500 — published</td><td class="check">✓ built for SMB</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ same hands</td></tr>
+      </table>
+    </div>
+    <p class="comp-note reveal">// one practice that builds your website and then attacks it — same hands, full accountability, one invoice</p>
+  </div>
+</section>
+
+<!-- EVIDENCE — sample finding, RoE, case receipts -->
+<section class="evidence step" id="evidence">
+  <div class="wrap">
+    <div class="evidence-header reveal">
+      <span class="label">Receipts</span>
+      <h2 class="display">Audited, attacked, documented.</h2>
+      <p>This is the format your report arrives in. One anonymised finding from a real engagement — client details removed, structure untouched.</p>
+    </div>
+    <div class="finding metal-panel holo-border reveal">
+      <div class="finding-head">
+        <span class="f-id">BN-2026-014</span>
+        <span class="f-sev">CRITICAL · CVSS 4.0: 9.1</span>
+      </div>
+      <div class="f-title">Authenticated SQL injection in client portal export</div>
+      <div class="f-row"><span class="f-k">VECTOR</span><span class="f-v mono">CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:H/VA:L/SC:N/SI:N/SA:N</span></div>
+      <div class="f-row"><span class="f-k">REPRO</span><span class="f-v">1. Authenticate as a standard client-account user.<br>2. Open Clients → Export CSV; tamper the <code>from_date</code> parameter with <code>' OR '1'='1</code>.<br>3. The export returns the full clients table — including other tenants' rows.</span></div>
+      <div class="f-row"><span class="f-k">IMPACT</span><span class="f-v">Full client-list exfiltration by any registered user: GDPR Art. 33 72-hour notification, contractual penalties, churn.</span></div>
+      <div class="f-row"><span class="f-k">FIX</span><span class="f-v">Parameterised queries on the export path; tenant scoping enforced at the query layer; regression test added to CI.</span></div>
+      <div class="f-row f-retest"><span class="f-k">RETEST</span><span class="f-v">Verified fixed — 12 days after report</span></div>
+    </div>
+    <div class="evidence-lines reveal">
+      <p>Manual testing led with Burp Suite Professional; every scanner result hand-verified — no copy-pasted scanner noise.</p>
+      <p>All evidence encrypted at rest, handed over with the report, purged 90 days after engagement close.</p>
+      <p>A typical WAST is 2–4 days of hands-on testing plus reporting; the fixed quote reflects scope, not hours.</p>
+    </div>
+    <div class="roe reveal">
+      <span class="k">// rules of engagement</span>
+      <p>Availability-safe by default: no DoS or stress testing, rate-limited traffic, agreed testing windows, immediate stop on your word. Your site stays live; your clients notice nothing.</p>
+      <p>Hack The Box Pro Labs practitioners — Dante completed, CPTS track in progress. We will show you the live profile on a screen-share before you sign anything.</p>
+    </div>
+    <div class="case-links reveal">
+      <a href="cases/2020-vanguard-wast.html">Vanguard — full WAST + signed retest attestation →</a>
+      <a href="cases/2023-horizon-osint.html">Horizon — OSINT due diligence ahead of an acquisition →</a>
+      <a href="cases/2024-securecloud.html">SecureCloud — CVSS dashboard build, 97 Lighthouse →</a>
+      <a href="cases/2019-cipher-medical.html">Cipher Medical — patient portal, GDPR-grade hardening →</a>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER · CALCULATOR -->
+<section class="calc-section step" id="configure">
+  <div class="wrap">
+    <div class="calc-header reveal">
+      <span class="label">Security calculator</span>
+      <h2 class="display">Configure your engagement.</h2>
+      <p>Fixed quotes, no surprises. Set your scope — the price updates live. Press <b>ⓘ</b> on any line to see exactly what is included.</p>
+      <p class="calc-note dim">// STANDARD LEAD TIME 2–3 WEEKS — ENGAGEMENTS ARE SLOTTED FIRST-COME, ONE AT A TIME</p>
+      <p class="calc-note">// latest engagement: 17 findings, 2 criticals, retest attested in 12 days — <a href="#evidence">see a real finding</a> above</p>
+    </div>
+    <div class="calc-container reveal">
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Engagement</strong><button type="button" class="info-btn" aria-label="What's included" data-info="s1">i</button></div>
+            <span>What we test and how deep we go</span>
+          </div>
+          <div class="calc-control">
+            <select id="secBase">
+              <option value="1500">WAST audit — €1,500</option>
+              <option value="2700">WAST + manual pentest — €2,700 (saves €1,200)</option>
+              <option value="600">OSINT exposure scan — €600</option>
+              <option value="3300">Full spectrum: all three — €3,300</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-info" id="s1"><div class="calc-info-inner">
+          <strong>WAST audit (€1,500):</strong> OWASP Top 10, CVSS-scored report, fix roadmap, 30-day verification pass for critical and high fixes, with signed retest attestation.<br>
+          <strong>WAST + manual pentest (€2,700):</strong> adds hand-executed attacks on your existing site — sessions, business logic, chained exploits. <em>Bundle saves €1,200 vs booking separately.</em><br>
+          <strong>OSINT scan (€600):</strong> leaked credentials, exposed documents, attack-surface map.<br>
+          <strong>Full spectrum (€3,300):</strong> the €2,700 bundle plus OSINT. <em>Enterprise equivalent: €15,000+.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Extra targets</strong><button type="button" class="info-btn" aria-label="What's included" data-info="s2">i</button></div>
+            <span>€250 per additional domain / app / environment</span>
+          </div>
+          <div class="calc-control">
+            <input type="range" id="secTargets" min="0" max="10" value="0">
+            <span class="calc-value" id="targetsValue">0</span>
+          </div>
+        </div>
+        <div class="calc-info" id="s2"><div class="calc-info-inner">
+          The base engagement covers <strong>one target</strong> — one domain or application. Add your staging server, client portal, API, or second brand here. <em>Testing anything you do not own is illegal — we verify ownership before any work.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Executive report + workshop</strong><button type="button" class="info-btn" aria-label="What's included" data-info="s3">i</button></div>
+            <span>Board-ready summary + live remediation session</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="secReport"><span class="mono" style="font-size:.9rem;color:var(--dim)">+ €450</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="s3"><div class="calc-info-inner">
+          The standard report is written for whoever fixes things. This adds a <strong>non-technical executive summary</strong> for owners, boards, insurers and enterprise clients — plus a 60-minute live call where we walk your developer through every fix. <em>Often required for cyber-insurance and ISO 27001 evidence.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Annual re-test</strong><button type="button" class="info-btn" aria-label="What's included" data-info="s4">i</button></div>
+            <span>Same scope, re-tested within 12 months</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="secRetest"><span class="mono" style="font-size:.9rem;color:var(--dim)">+ €900</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="s4"><div class="calc-info-inner">
+          Every update, plugin and new feature changes your attack surface. A locked-in re-test within 12 months at a <strong>40% discount to the base rate</strong> — this is what "regular testing" in GDPR Art. 32 and NIST CSF actually looks like on paper.
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Priority scheduling</strong><button type="button" class="info-btn" aria-label="What's included" data-info="s5">i</button></div>
+            <span>Work begins within 7 days</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="secPriority"><span class="mono" style="font-size:.9rem;color:var(--dim)">+ €300</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="s5"><div class="calc-info-inner">
+          Standard lead time is 2–3 weeks. Priority puts your engagement at the front of the queue. <em>If you suspect you are already compromised, email us instead — incident triage is a different, faster conversation.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row" style="border-bottom:none">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong style="color:var(--terminal)">Cash payment</strong><button type="button" class="info-btn" aria-label="What's included" data-info="s6">i</button></div>
+            <span>Pay on completion, in cash — declared and invoiced</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="secCash"><span class="mono" style="font-size:.9rem;color:var(--terminal)">€0 adjustment</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="s6"><div class="calc-info-inner">
+          Some clients prefer to settle in cash when the report is handed over. <strong>Fully legal, fully declared</strong>: you receive a VAT invoice and receipt like any other payment. Ticking this box simply tells us your preference — we confirm the arrangement in the engagement letter. Same fixed price either way.
+        </div></div>
+      </div>
+
+      <div class="calc-total">
+        <div class="label">YOUR INVESTMENT</div>
+        <div class="price" id="secTotal">€1,500</div>
+        <div class="price-note">+ VAT 23% where applicable · 50% to schedule · 50% on report delivery</div>
+        <div class="compare">Enterprise quote for this scope: <s>€8,000 – €25,000</s></div>
+        <div class="savings" id="secSavings">Cash preference noted — price unchanged</div>
+        <div class="savings" id="secBundle">// bundle applied — €1,200 stays in your pocket</div>
+      </div>
+      <p class="calc-note dim" style="text-align:center;margin-top:18px">// locked in writing: fixed quote · 100% refund if we can't deliver · you own the result on final payment</p>
+
+      <div class="policy-gate">
+        <label class="policy-check">
+          <input type="checkbox" id="secPolicyCheck">
+          <span class="txt">I have read and agree to the <a href="policies.html#terms" target="_blank">Terms of Service</a>, <a href="policies.html#payment" target="_blank">Payment Terms</a>, <a href="policies.html#refund" target="_blank">Refund Policy</a> and <a href="policies.html#privacy" target="_blank">Privacy Policy</a>. I confirm I am authorised to commission testing of the target(s) described, and that testing begins only after a signed engagement letter.</span>
+        </label>
+      </div>
+
+      <div class="calc-cta">
+        <a href="mailto:hello@bureaunull.com" class="btn btn-primary disabled" id="secCta">Request this engagement →</a>
+        <button type="button" class="copy-mail" data-copy="hello@bureaunull.com">⧉ copy address</button>
+        <span class="hint" id="secCtaHint">// tick to unlock — 4 seconds, protects both sides</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section class="objections step" id="objections">
+  <div class="wrap">
+    <div class="objections-header reveal">
+      <span class="label">Objections</span>
+      <h2 class="display">We have heard them all.</h2>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card reveal">
+        <div class="q">We are too small to be targeted.</div>
+        <div class="a"><strong>43% of all attacks target small businesses.</strong> Bots do not check your turnover. They scan every IP on the internet, 24/7, for known weaknesses. You are not too small — you are exactly the right size: big enough to pay, small enough to be unguarded.</div>
+      </div>
+      <div class="obj-card reveal">
+        <div class="q">Our hosting provider handles security.</div>
+        <div class="a">Hosting secures the <strong>server</strong>. Your application — the login forms, the contact form, the checkout — is your responsibility. SQL injection and broken authentication happen at code level, where hosting ends and your liability begins.</div>
+      </div>
+      <div class="obj-card reveal">
+        <div class="q">We had a penetration test last year.</div>
+        <div class="a">Good — you are ahead of 90% of your competitors. But every update, plugin and new feature changes your attack surface. <strong>Annual testing is the floor, not the ceiling</strong> — and it is exactly what GDPR Art. 32 means by "regular testing".</div>
+      </div>
+      <div class="obj-card reveal">
+        <div class="q">Security audits are too expensive.</div>
+        <div class="a">Enterprise audits are. Ours start at €1,500 — because we do not feed an enterprise. Against an average breach cost of $3.31M (IBM 2025, sub-500 staff), that is <strong>insurance priced at 0.05% of the risk</strong>. Expensive is discovering the breach after your clients do.</div>
+      </div>
+    </div>
+    <div class="obj-more-wrap">
+      <button class="obj-toggle" id="objToggle">Show 6 more objections <span class="arr">↓</span></button>
+      <div class="obj-grid" id="objMore" style="margin-top:26px">
+        <div class="obj-card">
+          <div class="q">We do not collect sensitive data.</div>
+          <div class="a">You have contact forms, email addresses, invoices — and a reputation. A defaced homepage or a hijacked email account costs you clients <strong>even when no data is stolen</strong>. Your brand is the asset. The audit protects it.</div>
+        </div>
+        <div class="obj-card">
+          <div class="q">We will do it later.</div>
+          <div class="a">The average breach takes <strong>194 days</strong> just to identify (IBM 2024). "Later" is the most expensive word in cybersecurity — the attackers' timeline does not wait for yours. An audit this quarter costs €1,500; a breach this quarter costs everything above.</div>
+        </div>
+        <div class="obj-card">
+          <div class="q">Our developer says the site is secure.</div>
+          <div class="a">They may be right — and a second pair of adversary-trained eyes is how you prove it. <strong>Builders and breakers are different skill sets</strong>; that is why the industry separates them. Your developer keeps their job. You keep your business.</div>
+        </div>
+        <div class="obj-card">
+          <div class="q">We have a firewall and Cloudflare.</div>
+          <div class="a">Excellent — perimeter tools stop the lazy attacks. They do nothing for broken access control, business-logic abuse, or the plugin vulnerability published last Tuesday. <strong>A WAF is a fence. We check whether the building has doors.</strong></div>
+        </div>
+        <div class="obj-card">
+          <div class="q">Nobody knows we exist. Why would they find us?</div>
+          <div class="a">They already have. Scanners do not browse — they enumerate. Your IP sits in ranges scanned thousands of times a day, whether you rank on Google or not. <strong>Obscurity is not a strategy; it is a delay.</strong></div>
+        </div>
+        <div class="obj-card">
+          <div class="q">What if you find nothing? Do we still pay?</div>
+          <div class="a">Yes — and a clean report is a deliverable, not a disappointment. It is the <strong>documented due diligence</strong> your insurer, your enterprise clients and the DPC all ask for. In sixteen years, we have never delivered an empty report.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close-sec step" id="request">
+  <div class="wrap">
+    <div class="close-grid">
+      <div class="close-steps reveal">
+        <span class="label" style="margin-bottom:10px;display:block">What happens after you press the button</span>
+        <div class="close-step"><span class="n">/01</span><div><h4>Reply within 4 working hours.</h4><p>A senior engineer — not a salesperson — replies with scoping questions and a fixed quote. NDA signed before you share anything sensitive.</p></div></div>
+        <div class="close-step"><span class="n">/02</span><div><h4>Engagement letter.</h4><p>Scope, rules of engagement, timing and price in writing. Testing begins only after you sign — and only against assets you own or control.</p></div></div>
+        <div class="close-step"><span class="n">/03</span><div><h4>We attack. Quietly.</h4><p>1–3 weeks depending on scope. Your site stays live; your clients notice nothing. You get a mid-engagement heads-up if anything critical surfaces early.</p></div></div>
+        <div class="close-step"><span class="n">/04</span><div><h4>Report + fix roadmap.</h4><p>Every finding CVSS-scored, explained in plain English, with exact remediation steps. Critical and high fixes verified within 30 days — closed with a signed retest attestation suitable for procurement and insurers.</p></div></div>
+        <div class="close-step"><span class="n">/05</span><div><h4>You sleep again.</h4><p>Optional annual re-test keeps the evidence current — for insurers, for enterprise clients, for the DPC, and for you.</p></div></div>
+      </div>
+      <div class="close-panel reveal">
+        <span class="label" style="color:var(--alert);display:block;margin-bottom:16px">>> END OF FILE. DECISION REQUIRED.</span>
+        <h2 class="display">Untested is not the same as <span class="holo">safe.</span><br>Hope is not a <span class="holo">control.</span></h2>
+        <p>Every untested website carries a debt it has not been billed for yet. The audit is how you find out the number — on your terms, before someone else presents theirs.</p>
+        <p>You have read the numbers. You have seen the price. The only variable left is <strong>who gets there first</strong>: us, or someone with worse intentions and a longer timeline.</p>
+        <p>The request below costs nothing and commits you to nothing. It starts a conversation with the people who will actually do the work.</p>
+        <div class="close-cta-box metal-panel">
+          <span class="label">// no obligation · NDA available · fixed quote before any work</span>
+          <a href="#configure" class="btn btn-primary">Configure your audit →</a>
+          <div class="sub">or write directly: hello@bureaunull.com · reply within 4 working hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Bureau<span>Null</span></a>
+        <p>A small, senior team designing, hand-coding and security-testing websites for clients worldwide. Serious goals, serious budgets — available anywhere.</p>
+      </div>
+      <div class="footer-col">
+        <p class="f-head">Navigation</p>
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="security.html">Security</a>
+        <a href="journal.html">Journal</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <div class="footer-col">
+        <p class="f-head">Legal</p>
+        <a href="policies.html#terms">Terms of Service</a>
+        <a href="policies.html#payment">Payment Terms</a>
+        <a href="policies.html#refund">Refund Policy</a>
+        <a href="policies.html">All policies (full page)</a>
+      </div>
+      <div class="footer-col">
+        <p class="f-head">Contact</p>
+        <a href="mailto:hello@bureaunull.com">hello@bureaunull.com</a>
+        <a href="index.html#contact">Contact form</a>
+        <span style="color:var(--dim);font-size:.85rem;display:block;margin-top:8px">Response within 4 working hours. Worldwide.</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Bureau Null. All rights reserved.</div>
+      <div>No cookies · No trackers · No ads — we practice what we audit &nbsp;·&nbsp; ~$ sudo shutdown -h now</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+if(window.gsap){
+gsap.registerPlugin(ScrollTrigger);
+gsap.to('.hero-sec h1 .line-inner',{y:0,duration:1.2,stagger:.12,ease:"power3.out",delay:.3});
+gsap.from('.hero-subhead',{opacity:0,y:20,duration:.8,ease:"power3.out",delay:.8});
+gsap.from('.hero-btns',{opacity:0,y:20,duration:.8,ease:"power3.out",delay:.95});
+gsap.from('.hero-note',{opacity:0,duration:.8,delay:1.2});
+}
+
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target);}});},{threshold:.1});
+reveals.forEach(el=>obs.observe(el));
+
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+/* ---------- INFOSEC CALCULATOR ---------- */
+const $=id=>document.getElementById(id);
+const secBase=$('secBase'),secTargets=$('secTargets'),secReport=$('secReport'),
+      secRetest=$('secRetest'),secPriority=$('secPriority'),secCash=$('secCash'),
+      secTotal=$('secTotal'),secSavings=$('secSavings'),targetsValue=$('targetsValue'),
+      secCta=$('secCta'),secPolicyCheck=$('secPolicyCheck'),secCtaHint=$('secCtaHint'),
+      secBundle=$('secBundle');
+
+function secUpdate(){
+  let total=parseInt(secBase.value);
+  total+=parseInt(secTargets.value)*250;
+  if(secReport.checked)total+=450;
+  if(secRetest.checked)total+=900;
+  if(secPriority.checked)total+=300;
+  secTotal.textContent='€'+total.toLocaleString();
+  secSavings.classList.toggle('visible',secCash.checked);
+  secBundle.classList.toggle('visible',secBase.value==='2700');
+  secCta.classList.toggle('disabled',!secPolicyCheck.checked);
+  secCtaHint.textContent=secPolicyCheck.checked?'// opens a pre-filled email — no obligation, fixed quote before any work':'// tick to unlock — 4 seconds, protects both sides';
+
+  let s='Security engagement: '+secBase.options[secBase.selectedIndex].text;
+  if(secTargets.value>0)s+=', +'+secTargets.value+' extra targets';
+  if(secReport.checked)s+=', Executive report + workshop';
+  if(secRetest.checked)s+=', Annual re-test';
+  if(secPriority.checked)s+=', Priority scheduling';
+  if(secCash.checked)s+=', Cash payment preference (price unchanged)';
+  s+=' — Total €'+total.toLocaleString();
+  secCta.href='mailto:hello@bureaunull.com?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent('Hello Bureau Null,\n\nI would like to request the following engagement:\n\n'+s+'\n\nTargets: discussed under NDA on the scoping call.\n\nName:\nCompany / role:\nEmail:\nPreferred timeline:\n\nI have read and agree to the Terms of Service, Payment Terms, Refund Policy and Privacy Policy: '+(secPolicyCheck.checked?'YES':'NO')+' — confirmed in engagement letter\n\nRegards,');
+}
+[secBase,secTargets,secReport,secRetest,secPriority,secCash].forEach(el=>{el.addEventListener('input',secUpdate);el.addEventListener('change',secUpdate);});
+secTargets.addEventListener('input',()=>targetsValue.textContent=secTargets.value);
+secPolicyCheck.addEventListener('change',secUpdate);
+secUpdate();
+
+document.querySelectorAll('.info-btn').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.preventDefault();
+    const panel=document.getElementById(b.dataset.info);
+    const wasOpen=panel.classList.contains('open');
+    document.querySelectorAll('.calc-info').forEach(p=>p.classList.remove('open'));
+    if(!wasOpen)panel.classList.add('open');
+  });
+});
+
+/* ---------- OBJECTIONS ACCORDION ---------- */
+const objToggle=$('objToggle'),objMore=$('objMore');
+objToggle.addEventListener('click',()=>{
+  const open=objMore.classList.toggle('open');
+  objToggle.classList.toggle('open',open);
+  objToggle.innerHTML=open?'Hide objections <span class="arr">↑</span>':'Show 6 more objections <span class="arr">↓</span>';
+});
+
+/* ---------- SMOOTH ANCHORS ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){
+  const href=this.getAttribute('href');
+  if(href==='#'){e.preventDefault();return;}
+  const t=document.querySelector(href);
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+
+/* ---------- LOGO GLITCH ---------- */
+const logo=document.querySelector('.logo');
+setInterval(()=>{if(Math.random()>0.97){logo.style.textShadow='2px 0 var(--alert), -2px 0 var(--violet)';setTimeout(()=>logo.style.textShadow='none',100);}},2000);
+</script>
+<script src="brand.js"></script>
+
+
+<!-- BN/SYSLOG :: you test perimeters for a living. this one was never hidden — only unlisted. :: 3lfMX :: walk the path a client walks — the journey is the order -->
+</body>
+</html>

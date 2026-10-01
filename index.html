@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Bureau Null — Websites That Win Clients | Design, Code, Security</title>
+<meta name="description" content="We design and hand-code websites that turn searches into signed contracts — then our ethical hackers test them. Clients worldwide. From €450.">
+<meta property="og:title" content="Bureau Null — Websites That Win Clients">
+<meta property="og:description" content="Hand-coded websites, built to rank, built to convert, tested by ethical hackers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bureaunull.com">
+<meta property="og:image" content="https://bureaunull.com/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="624">
+<meta property="og:image:alt" content="Bureau Null — websites that win clients. Design, code, security.">
+<link rel="canonical" href="https://bureaunull.com/">
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Bureau Null","description":"Hand-coded website design, development and web application security testing.","areaServed":"Worldwide","founder":{"@type":"Person","name":"Robert Jurkevich"},"email":"hello@bureaunull.com","priceRange":"€€€","url":"https://bureaunull.com"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How fixed is a fixed quote?","acceptedAnswer":{"@type":"Answer","text":"Fully fixed. The calculator gives an estimate; before any work begins you receive a written quote that locks scope, price and timeline, valid for 14 days. If you change the scope mid-project, the difference is quoted in advance — never invoiced without your approval."}},
+{"@type":"Question","name":"What if I need changes after launch?","acceptedAnswer":{"@type":"Answer","text":"Every package includes a support window (30–90 days depending on tier) during which bugs are fixed free. After that, individual edits are quoted per task, or covered by a monthly care plan you can cancel with 30 days' notice."}},
+{"@type":"Question","name":"Do you use WordPress?","acceptedAnswer":{"@type":"Answer","text":"No. Every site is hand-coded HTML, CSS and JavaScript. No themes, no plugin rot, no page-builder bloat — which is also why our sites load in under two seconds and present a far smaller attack surface."}},
+{"@type":"Question","name":"How do payments work?","acceptedAnswer":{"@type":"Answer","text":"50% to schedule your build slot, 50% on delivery. Direct bank transfer (SEPA) is standard; cash on delivery is possible and fully declared with a VAT invoice and receipt. Prices are in EUR, VAT 23% where applicable. We do not take card payments."}},
+{"@type":"Question","name":"Why is there no phone number?","acceptedAnswer":{"@type":"Answer","text":"Email plus scheduled video calls — everything in writing, nothing lost. No misheard requirements, no \"but you said on the phone\". A senior engineer replies within 4 working hours."}},
+{"@type":"Question","name":"What happens if you disappear?","acceptedAnswer":{"@type":"Answer","text":"If we cannot complete your project for reasons on our side, you receive a 100% refund of everything paid, including the deposit. On full payment you own the final design and content, with source code licensed to you perpetually. Bureau Null is a registered Irish business — full legal details, CRO and VAT numbers on every quote and invoice."}},
+{"@type":"Question","name":"Isn't it expensive?","acceptedAnswer":{"@type":"Answer","text":"Compare it with the cost of one stolen client. If a serious enquiry is worth €1,000 to you and your current site quietly loses two a month to a competitor whose site loads faster and looks safer, the \"expensive\" site pays for itself in a quarter. And the quote is fixed — the number you approve is the number on the invoice."}},
+{"@type":"Question","name":"My cousin can build it — why you?","acceptedAnswer":{"@type":"Answer","text":"They probably can build something that looks like a website. What they will not hand you is semantic HTML Google can rank, a 90+ speed score, and a security test by people who break websites for a living. Cheap sites are the most expensive kind — you pay for them twice."}},
+{"@type":"Question","name":"What if I don't like the design?","acceptedAnswer":{"@type":"Answer","text":"You approve the design before we build it. Wireframe, then visual design, then build — each stage signed off by you, with structured revision rounds in writing. You never see a finished surprise; you see a series of decisions you made."}},
+{"@type":"Question","name":"Why is the team anonymous?","acceptedAnswer":{"@type":"Answer","text":"You hire outcomes and one accountable name: Robert Jurkevich, CEO, signs every quote and invoice. The specialists stay off the marketing page because clients hire results, not headshots. References available on request."}}
+]}
+</script>
+<style>
+:root{--void:#060608;--panel:#0e0e12;--border:#1e1e28;--text:#e8e8ec;--dim:#9a9aa8;--violet:#00e676;--terminal:#00e676;--caution:#00e676;--red:#ef4444;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y proximity}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--void);color:var(--text);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--violet);color:var(--void)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--dim)}
+
+/* Loader */
+.loader{position:fixed;inset:0;background:var(--void);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace}
+.loader-term{color:var(--terminal);font-size:14px;margin-bottom:20px;min-height:20px}
+.loader-line{width:1px;height:0;background:var(--violet);animation:lineGrow 1s ease forwards .8s}
+@keyframes lineGrow{to{height:60px}}
+
+/* Noise */
+.noise{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all .5s cubic-bezier(.19,1,.22,1);border-bottom:1px solid transparent}
+nav.scrolled{padding:16px 0;background:rgba(6,6,8,.92);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--text)}
+.logo span{background:linear-gradient(120deg,#f4f4f7 0%,#9a9aa8 30%,#e8e8ee 50%,#78788a 70%,#dcdce4 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:logoShine 7s linear infinite}
+@keyframes logoShine{to{background-position:200% center}}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--dim);transition:.3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--violet);transition:.4s cubic-bezier(.19,1,.22,1)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 24px;border:1px solid var(--violet);font-size:.85rem;font-weight:600;color:var(--violet);transition:.4s;font-family:'JetBrains Mono',monospace}
+.nav-cta:hover{background:var(--violet);color:var(--void)}
+
+/* Typography */
+.display{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+h1{font-size:clamp(2.6rem,6vw,5.5rem)}
+h2{font-size:clamp(1.8rem,3.5vw,3rem)}
+h3{font-size:clamp(1.2rem,2vw,1.6rem);font-weight:600}
+.label{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+
+/* Layout */
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+section{position:relative;padding:110px 0;scroll-snap-align:start}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;transition:.4s;cursor:pointer;border:none}
+.btn-primary{background:var(--violet);color:var(--void)}
+.btn-primary:hover{background:var(--text);color:var(--void)}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--violet);color:var(--violet)}
+.btn.disabled{background:var(--border);color:var(--dim);cursor:not-allowed;pointer-events:none}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:160px 0 60px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,6,8,.95) 0%,rgba(6,6,8,.75) 55%,rgba(6,6,8,.45) 100%)}
+.hero-content{position:relative;z-index:2;max-width:780px}
+.hero .label{color:var(--terminal);margin-bottom:24px;display:block}
+.hero h1{margin-bottom:28px}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line-inner{display:block;transform:translateY(110%)}
+.hero-subhead{color:var(--dim);font-size:1.12rem;line-height:1.7;max-width:560px;margin-bottom:36px}
+.hero-subhead strong{color:var(--text);font-weight:600}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px}
+.hero-steps{display:flex;gap:0;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--dim)}
+.hero-steps span{padding:8px 16px;border:1px solid var(--border);border-right:none}
+.hero-steps span:first-child{border-radius:4px 0 0 4px}
+.hero-steps span:last-child{border-right:1px solid var(--border);border-radius:0 4px 4px 0}
+.hero-steps b{color:var(--violet);font-weight:600}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:3px;color:var(--dim);animation:hintFloat 2.5s ease-in-out infinite;z-index:2}
+@keyframes hintFloat{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+/* Sticky pill */
+.sticky-pill{position:fixed;bottom:28px;right:28px;z-index:200;padding:14px 26px;background:var(--violet);color:var(--void);font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700;border-radius:50px;box-shadow:0 8px 32px rgba(0,230,118,.35);opacity:0;transform:translateY(20px);pointer-events:none;transition:all .4s cubic-bezier(.19,1,.22,1)}
+.sticky-pill.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.sticky-pill:hover{background:var(--text)}
+
+/* Problem strip */
+.problem{padding:80px 0;background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.problem-item{text-align:left}
+.problem-item .num{font-family:'JetBrains Mono',monospace;font-size:2.6rem;font-weight:700;color:var(--caution);line-height:1;margin-bottom:12px}
+.problem-item h3{font-size:1rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.problem-item p{font-size:.88rem;color:var(--dim);line-height:1.6}
+.problem-item.bn-card{padding:34px 30px 30px}
+.problem-item .num{margin-top:6px}
+.p-goal{display:inline-block;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:1.5px;color:var(--terminal);text-transform:uppercase}
+.quotes-header{margin-bottom:56px;max-width:640px}
+.q-mark{font-family:'Space Grotesk',sans-serif;font-size:3.4rem;line-height:.6;background:linear-gradient(115deg,#f4f4f7 0%,#9a9aa8 28%,#ececf2 50%,#78788a 72%,#dcdce4 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px}
+.q-chip{display:inline-block;margin:6px 0 14px;padding:6px 12px;border:1px solid rgba(0,230,118,.35);color:var(--terminal);font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:2px;border-radius:3px;background:rgba(0,230,118,.05)}
+.quote-card.bn-card{padding:36px 30px 28px}
+.brief{padding:110px 0;border-top:1px solid var(--border);background:linear-gradient(180deg,var(--void) 0%,var(--panel) 100%)}
+.brief-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.brief-copy p{color:var(--dim);line-height:1.7;margin-top:18px;max-width:52ch}
+.brief-perk b{color:var(--terminal)}
+.brief-form{background:var(--void);border:1px solid var(--border);border-radius:4px;padding:36px;position:relative}
+.brief-form label{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:12px}
+.brief-row{display:flex;gap:12px}
+.brief-row input{flex:1;background:var(--panel);border:1px solid var(--border);border-radius:3px;padding:14px 16px;color:var(--text);font-family:'Inter',sans-serif;font-size:.95rem;outline:none;transition:.3s}
+.brief-row input:focus{border-color:var(--terminal);box-shadow:0 0 0 3px rgba(0,230,118,.08)}
+.brief-note{display:block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--dim);line-height:1.6}
+.brief-form .cf-success{margin-top:14px}
+@media(max-width:960px){.brief-inner{grid-template-columns:1fr;gap:36px}.brief-row{flex-direction:column}}
+.calc-scarcity{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:1.5px;color:var(--terminal)}
+.value-item:hover{background:rgba(0,230,118,.03)}
+.value-item:hover .vnum{color:var(--terminal)}
+
+/* Trust bar */
+.trust{padding:36px 0;border-bottom:1px solid var(--border)}
+.trust-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px}
+.trust-stat{text-align:center}
+.trust-stat .num{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--text);line-height:1}
+.trust-stat p{font-size:.72rem;color:var(--dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+.trust-divider{width:1px;height:36px;background:var(--border)}
+
+/* Value props (replaces old capabilities) */
+.values{padding:130px 0}
+.values-header{max-width:640px;margin-bottom:80px}
+.values-header h2{margin-top:16px}
+.values-list{display:flex;flex-direction:column}
+.value-item{display:grid;grid-template-columns:120px 1fr 1fr;gap:40px;align-items:baseline;padding:48px 0;border-top:1px solid var(--border);transition:.4s}
+.value-item:last-child{border-bottom:1px solid var(--border)}
+.value-item:hover{background:linear-gradient(90deg,rgba(0,230,118,.04),transparent)}
+.value-item .vnum{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--violet)}
+.value-item h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.value-item p{color:var(--dim);font-size:.98rem;line-height:1.7;max-width:46ch}
+.value-item p strong{color:var(--text);font-weight:600}
+
+/* Work */
+.work{padding:130px 0;background:var(--panel);border-top:1px solid var(--border)}
+.work-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:70px;flex-wrap:wrap;gap:20px}
+.work-header h2{max-width:16ch}
+.work-header p{max-width:380px;color:var(--dim);font-size:1rem;line-height:1.6}
+.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.work-card{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:4px;cursor:pointer;transition:.5s;background:var(--void)}
+.work-card:hover{border-color:var(--violet);transform:translateY(-6px)}
+.work-card-img{aspect-ratio:4/3;overflow:hidden}
+.work-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.19,1,.22,1)}
+.work-card:hover .work-card-img img{transform:scale(1.08)}
+.work-card-info{padding:24px}
+.work-card-info .label{margin-bottom:10px;display:block}
+.work-card-info h3{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;margin-bottom:8px}
+.work-card-info p{color:var(--dim);font-size:.9rem;line-height:1.6;margin-bottom:14px}
+.work-card-meta{display:flex;gap:14px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim);flex-wrap:wrap}
+.work-card-meta .dot{width:6px;height:6px;background:var(--terminal);border-radius:50%;display:inline-block;margin-right:6px}
+.work-more{margin-top:50px;text-align:center}
+
+/* How it works */
+.how{padding:130px 0}
+.how-header{text-align:center;margin-bottom:70px}
+.how-header h2{margin-top:16px}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.how-step{padding:44px 36px;border-right:1px solid var(--border);position:relative;background:var(--panel)}
+.how-step:last-child{border-right:none}
+.how-step .num{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--violet);margin-bottom:18px;display:block}
+.how-step h3{margin-bottom:12px;font-size:1.2rem}
+.how-step p{color:var(--dim);font-size:.92rem;line-height:1.7;margin-bottom:14px}
+.how-step .time{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--terminal)}
+
+/* Calculator */
+.calc-section{padding:130px 0;background:var(--panel);border-top:1px solid var(--border)}
+.calc-header{text-align:center;margin-bottom:60px}
+.calc-header h2{margin:16px 0}
+.calc-header p{color:var(--dim);max-width:52ch;margin:0 auto}
+.calc-container{max-width:920px;margin:0 auto;border:1px solid var(--border);border-radius:4px;background:var(--void);padding:44px}
+.calc-row{padding:20px 0;border-bottom:1px solid var(--border)}
+.calc-row-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.calc-label{display:flex;flex-direction:column;gap:4px}
+.calc-label .t{display:flex;align-items:center;gap:8px}
+.calc-label strong{font-weight:600;font-size:1rem}
+.info-btn{width:20px;height:20px;border:1px solid var(--border);border-radius:50%;background:transparent;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:.68rem;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.info-btn:hover{border-color:var(--violet);color:var(--violet)}
+.calc-label span{font-size:.85rem;color:var(--dim)}
+.calc-control{display:flex;align-items:center;gap:16px}
+.calc-control select{background:var(--panel);color:var(--text);border:1px solid var(--border);padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:.85rem;cursor:pointer;border-radius:3px}
+.calc-control input[type="range"]{width:190px;-webkit-appearance:none;height:4px;background:var(--border);border-radius:2px;outline:none}
+.calc-control input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--violet);border-radius:50%;cursor:pointer}
+.calc-value{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--text);min-width:44px;text-align:right}
+.calc-toggle{display:flex;align-items:center;gap:12px;cursor:pointer}
+.calc-toggle input{-webkit-appearance:none;width:44px;height:24px;background:var(--border);border-radius:12px;position:relative;cursor:pointer;transition:.3s;flex-shrink:0}
+.calc-toggle input::after{content:'';position:absolute;width:20px;height:20px;background:var(--dim);border-radius:50%;top:2px;left:2px;transition:.3s}
+.calc-toggle input:checked{background:var(--violet)}
+.calc-toggle input:checked::after{left:22px;background:var(--text)}
+.calc-info{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.19,1,.22,1),margin .3s;margin-top:0}
+.calc-info.open{max-height:300px;margin-top:16px}
+.calc-info-inner{padding:16px 20px;background:var(--panel);border-left:2px solid var(--violet);border-radius:0 4px 4px 0;font-size:.88rem;color:var(--dim);line-height:1.7}
+.calc-info-inner strong{color:var(--text)}
+.calc-info-inner em{color:var(--terminal);font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.8rem}
+
+/* Testimonials */
+.quotes{padding:110px 0;border-top:1px solid var(--border)}
+.quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.quote-card{padding:34px 30px;border:1px solid var(--border);border-radius:4px;background:var(--panel);position:relative}
+.quote-card::before{content:'"';position:absolute;top:6px;left:20px;font-family:'Space Grotesk',sans-serif;font-size:4rem;color:var(--violet);opacity:.35;line-height:1}
+.quote-card p{color:var(--text);font-size:.98rem;line-height:1.7;margin:26px 0 20px}
+.quote-card .who{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--dim)}
+.quote-card .who b{color:var(--terminal);font-weight:600}
+@media(max-width:960px){.quotes-grid{grid-template-columns:1fr}}
+
+/* Policy gate */
+.policy-gate{margin-top:26px;padding:22px;border:1px solid var(--border);border-radius:4px;background:var(--panel)}
+.policy-check{display:flex;align-items:flex-start;gap:14px;cursor:pointer}
+.policy-check input{-webkit-appearance:none;width:22px;height:22px;border:1px solid var(--border);border-radius:3px;cursor:pointer;position:relative;flex-shrink:0;margin-top:2px;transition:.3s;background:var(--void)}
+.policy-check input:checked{background:var(--terminal);border-color:var(--terminal)}
+.policy-check input:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--void);font-weight:700;font-size:.85rem}
+.policy-check .txt{font-size:.88rem;color:var(--dim);line-height:1.6}
+.policy-check .txt a{color:var(--violet);border-bottom:1px solid transparent;transition:.3s}
+.policy-check .txt a:hover{border-bottom-color:var(--violet)}
+
+.calc-total{text-align:center;padding-top:34px;margin-top:8px;border-top:2px solid var(--violet)}
+.calc-total .label{margin-bottom:12px}
+.calc-total .price{font-family:'JetBrains Mono',monospace;font-size:3rem;font-weight:700;color:var(--text);line-height:1}
+.calc-total .price-note{color:var(--dim);font-size:.85rem;margin-top:8px}
+.calc-total .savings{color:var(--terminal);font-family:'JetBrains Mono',monospace;font-size:.9rem;margin-top:8px;opacity:0;transition:.3s}
+.calc-total .savings.visible{opacity:1}
+.calc-cta{margin-top:28px;text-align:center}
+.calc-cta .hint{display:block;margin-top:12px;font-size:.78rem;color:var(--dim);font-family:'JetBrains Mono',monospace}
+.calc-lock{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--dim);line-height:1.6}
+.policy-hint{display:block;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim)}
+
+/* Tier strip — quick-pick above the calculator */
+.tier-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.tier-cell{position:relative;display:flex;flex-direction:column;gap:4px;padding:16px 14px 13px;background:var(--panel);border:1px solid var(--border);border-radius:4px;text-align:left;cursor:pointer;transition:.3s;color:var(--text)}
+.tier-cell:hover{border-color:var(--terminal)}
+.tier-cell.active{border-color:rgba(0,230,118,.55);background:rgba(0,230,118,.04)}
+.tier-cell .tier-name{font-family:'JetBrains Mono',monospace;font-size:.76rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text)}
+.tier-cell .tier-price{font-family:'JetBrains Mono',monospace;font-size:.92rem;color:var(--terminal)}
+.tier-cell .tier-who{font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--dim);line-height:1.5}
+.tier-cell.is-hot{border-color:var(--terminal)}
+.tier-cell .tier-flag{position:absolute;top:-9px;right:10px;background:var(--terminal);color:var(--void);font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;letter-spacing:1.5px;padding:2px 8px;border-radius:2px}
+@media(max-width:700px){.tier-strip{grid-template-columns:repeat(2,1fr)}}
+.cf-alt{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim)}
+
+/* Breakout — aggressive interactive security teaser */
+.breakout{padding:0;border-top:1px solid var(--border);position:relative;overflow:hidden;background:#050507}
+.breakout-canvas-wrap{position:relative;height:78vh;min-height:520px}
+#breakoutCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.breakout-hud{position:absolute;top:110px;left:40px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#9a9aa8;line-height:1.9;pointer-events:none;text-shadow:0 0 8px rgba(6,6,8,.8)}
+.breakout-hud .hud-alert{color:var(--red)}
+.breakout-hud-2{position:absolute;top:110px;right:40px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim);text-align:right;line-height:1.9;pointer-events:none}
+.breakout-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;z-index:3}
+.breakout-content .inner{pointer-events:auto;max-width:820px;padding:0 40px}
+.breakout-content h2{font-size:clamp(2.2rem,5vw,4.2rem);margin-bottom:22px;text-shadow:0 4px 40px rgba(6,6,8,.9)}
+.breakout-content h2 .strike{color:var(--red)}
+.breakout-content p{color:#b9b9c4;max-width:60ch;margin:0 auto 30px;font-size:1.05rem;line-height:1.7;text-shadow:0 2px 20px rgba(6,6,8,.9)}
+.breakout-content .inner{padding-top:24px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Team */
+.team{padding:130px 0;background:var(--panel);border-top:1px solid var(--border)}
+.team-header{max-width:680px;margin-bottom:70px}
+.team-header h2{margin-top:16px}
+.team-header p{color:var(--dim);margin-top:18px;font-size:1.02rem;line-height:1.75}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.team-card{padding:34px 28px;border:1px solid var(--border);border-radius:4px;background:var(--void);transition:.4s;position:relative;overflow:hidden}
+.team-card:hover{border-color:var(--violet);transform:translateY(-4px)}
+.team-card .t-tag{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:2px;color:var(--violet);margin-bottom:18px;display:block}
+.team-card h3{font-family:'JetBrains Mono',monospace;font-size:1.15rem;margin-bottom:6px;letter-spacing:.5px}
+.team-card .role{font-size:.85rem;color:var(--text);font-weight:600;margin-bottom:14px}
+.team-card p{color:var(--dim);font-size:.87rem;line-height:1.65}
+.team-card .creds{margin-top:16px;padding-top:14px;border-top:1px dashed var(--border);font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--terminal);line-height:2}
+.team-card.ceo{border-color:var(--violet)}
+.team-card.ceo::before{content:'CEO / FOUNDER';position:absolute;top:14px;right:-1px;background:var(--violet);color:var(--void);font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;padding:3px 10px;letter-spacing:1px}
+
+/* Contact form */
+.contact{padding:130px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:start}
+.contact-info h2{margin:16px 0 20px}
+.contact-info p{color:var(--dim);line-height:1.75;margin-bottom:16px;max-width:44ch}
+.contact-info .mono-line{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--terminal);margin-top:26px;display:block}
+.contact-form{border:1px solid var(--border);border-radius:4px;background:var(--panel);padding:40px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.cf-field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.cf-field label{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+.cf-field input,.cf-field select,.cf-field textarea{background:var(--void);border:1px solid var(--border);border-radius:3px;color:var(--text);padding:13px 16px;font-family:'Inter',sans-serif;font-size:.95rem;transition:.3s;width:100%}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{outline:none;border-color:var(--violet)}
+.cf-field textarea{min-height:130px;resize:vertical}
+.cf-field .err{font-size:.75rem;color:var(--red);display:none;font-family:'JetBrains Mono',monospace}
+.cf-field.invalid input,.cf-field.invalid textarea{border-color:var(--red)}
+.cf-field.invalid .err{display:block}
+.cf-submit{width:100%;justify-content:center}
+.cf-note{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim);text-align:center}
+.cf-success{display:none;padding:26px;border:1px solid var(--terminal);border-radius:4px;background:rgba(0,230,118,.05);text-align:center;font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--terminal);line-height:1.8}
+
+/* Toast notifications removed — fake social proof */
+
+/* Policy modals */
+.modal-overlay{position:fixed;inset:0;background:rgba(6,6,8,.85);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--void);border:1px solid var(--border);border-radius:6px;max-width:720px;width:100%;max-height:80vh;display:flex;flex-direction:column}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid var(--border)}
+.modal-head h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem}
+.modal-close{background:none;border:1px solid var(--border);color:var(--dim);width:34px;height:34px;border-radius:4px;cursor:pointer;font-size:1rem;transition:.3s}
+.modal-close:hover{border-color:var(--red);color:var(--red)}
+.modal-body{padding:28px;overflow-y:auto;font-size:.88rem;color:var(--dim);line-height:1.8}
+.modal-body h4{color:var(--text);margin:18px 0 8px;font-size:.95rem}
+.modal-body h4:first-child{margin-top:0}
+.modal-body ul{margin:8px 0 8px 20px}
+.modal-body li{margin-bottom:6px}
+
+/* Footer */
+.footer{padding:100px 0 40px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:60px;margin-bottom:70px}
+.footer-brand .logo{font-size:1.4rem;margin-bottom:16px;display:inline-block}
+.footer-brand p{color:var(--dim);font-size:.95rem;line-height:1.7;max-width:320px}
+.footer-col .f-head{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:20px;display:block}
+.footer-col a{display:block;color:var(--dim);margin-bottom:10px;font-size:.9rem;transition:.3s}
+.footer-col a:hover{color:var(--violet)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--dim);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:12px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.19,1,.22,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* Hero micro-reassurance */
+.hero-reassure{display:block;margin:-24px 0 34px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--dim)}
+.hero-reassure b{color:var(--terminal);font-weight:600}
+
+/* Testimonial case chips */
+.case-chip{display:inline-block;margin-top:12px;padding:5px 12px;border:1px solid rgba(0,230,118,.35);border-radius:3px;color:var(--terminal);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:1.5px;transition:.3s}
+.case-chip:hover{background:var(--violet);color:var(--void);border-color:var(--violet)}
+
+/* Objections */
+.objections{padding:110px 0;border-top:1px solid var(--border);background:var(--panel)}
+.objections-header{max-width:680px;margin-bottom:60px}
+.objections-header h2{margin-top:16px}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.obj-card{padding:30px;border:1px solid var(--border);border-radius:4px;background:var(--void)}
+.obj-card .q{font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:12px;color:var(--text);font-size:1.08rem}
+.obj-card .q::before{content:'" '}.obj-card .q::after{content:' "'}
+.obj-card .a{color:var(--dim);font-size:.93rem;line-height:1.7}
+.obj-card .a strong{color:var(--terminal)}
+
+/* FAQ */
+.faq{padding:110px 0;border-top:1px solid var(--border)}
+.faq-header{max-width:640px;margin-bottom:56px}
+.faq-header h2{margin-top:16px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.faq-item{border:1px solid var(--border);border-radius:4px;background:var(--panel);padding:22px 24px}
+.faq-item summary{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.02rem;cursor:pointer;list-style:none;color:var(--text)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';float:right;color:var(--violet);font-family:'JetBrains Mono',monospace;margin-left:16px}
+.faq-item[open] summary::after{content:'–'}
+.faq-item p{color:var(--dim);font-size:.9rem;line-height:1.7;margin-top:14px}
+
+/* Breakout CTA — visually dominant */
+.breakout-cta{display:inline-flex;align-items:center;gap:10px;padding:18px 44px;background:var(--red);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;letter-spacing:.5px;transition:.4s;box-shadow:0 12px 44px rgba(239,68,68,.35)}
+.breakout-cta:hover{background:#ff5b5b;transform:translateY(-2px);box-shadow:0 18px 60px rgba(239,68,68,.45)}
+
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+.reveal{opacity:1;transform:none}
+}
+
+@media(max-width:960px){
+.problem-grid{grid-template-columns:1fr}
+.work-grid{grid-template-columns:1fr}
+.how-grid{grid-template-columns:1fr}
+.how-step{border-right:none;border-bottom:1px solid var(--border)}
+.how-step:last-child{border-bottom:none}
+.value-item{grid-template-columns:1fr;gap:12px}
+.team-grid{grid-template-columns:1fr 1fr}
+.contact-grid{grid-template-columns:1fr}
+.obj-grid,.faq-grid{grid-template-columns:1fr}
+html{scroll-snap-type:none}
+.footer-grid{grid-template-columns:1fr 1fr}
+.nav-links{display:none}
+.calc-container{padding:26px}
+.sticky-pill{bottom:16px;right:16px;padding:12px 20px}
+}
+@media(max-width:600px){
+.footer-grid{grid-template-columns:1fr}
+.team-grid,.cf-row{grid-template-columns:1fr}
+.trust-inner{justify-content:center}
+.trust-divider{display:none}
+.hero-steps span{padding:8px 10px;font-size:.7rem}
+}
+</style>
+<link rel="stylesheet" href="brand.css">
+</head>
+<body data-step="1">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!--
+  ~$ whoami
+  > bureau_null
+
+  ~$ cat /var/log/origin.txt
+  > "The finest work is invisible to the client,
+  >   but unforgettable to their customers."
+
+  ~$ ./find_talent.sh --level=elite
+  > [REDACTED] — Lead Developer
+  > [REDACTED] — Security Researcher
+  > [CLASSIFIED] — UX Strategist
+
+  ~$ ping humanity -c 1
+  > 64 bytes from earth: seq=1 ttl=64 time=0.042ms
+  > We are still here. Are you?
+
+  If you found this, you look at details.
+  We like details. hello@bureaunull.com
+-->
+
+<div class="noise"></div>
+
+<div class="loader" id="loader">
+  <div class="loader-term" id="loader-term"></div>
+  <div class="loader-line"></div>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Bureau<span>Null</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="security.html">Security</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a class="nav-cta" href="index.html#pricing">Start a project</a></li>
+    </ul>
+  </div>
+</nav>
+
+<a href="#pricing" class="sticky-pill" id="stickyPill">CONFIGURE YOUR PROJECT →</a>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero step" id="top">
+  <div class="hero-bg"><canvas id="heroCanvas"></canvas></div>
+  <div class="wrap hero-content">
+    <span class="label" id="hero-label" data-scramble>~/STUDIO — EST. 2010 — DESIGN · CODE · SECURITY</span>
+    <h1 class="display">
+      <span class="line"><span class="line-inner">Your next client</span></span>
+      <span class="line"><span class="line-inner">googles you</span></span>
+      <span class="line"><span class="line-inner"><span style="color:var(--violet)">tonight.</span></span></span>
+    </h1>
+    <p class="hero-subhead" id="hero-subhead">What they find in the next 8 seconds decides everything. We design and hand-code websites that turn searches into signed contracts — for businesses that live or die by what Google shows next. Then our ethical hackers try to break them, <strong>before anyone else does.</strong></p>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn btn-primary">Configure your project ↓</a>
+      <a href="work.html" class="btn btn-outline">See the work</a>
+    </div>
+    <span class="hero-reassure">// <b>fixed quotes</b> · 50% to schedule, 50% on delivery · reply within 4 working hours</span>
+    <div class="hero-steps">
+      <span><b>01</b>&nbsp; You describe the goal</span>
+      <span><b>02</b>&nbsp; We design &amp; build</span>
+      <span><b>03</b>&nbsp; You launch &amp; get clients</span>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL ↓</div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem step">
+  <div class="wrap">
+    <h2 class="visually-hidden">Why the first eight seconds decide</h2>
+    <div class="problem-grid">
+      <div class="problem-item bn-card reveal"><span class="bn-scan"></span>
+        <div class="num"><span class="holo">8 sec</span></div>
+        <h3>That is all you get.</h3>
+        <p>Eight seconds after your page loads, the decision is made. We engineer every pixel so the decision goes your way.</p>
+        <span class="p-goal">→ Goal: instant trust</span>
+      </div>
+      <div class="problem-item bn-card reveal"><span class="bn-scan"></span>
+        <div class="num"><span class="holo">75%</span></div>
+        <h3>Judge credibility by design.</h3>
+        <p>Three out of four people judge a company's credibility by its website alone — before reviews, before referrals, before a single word with you.</p>
+        <span class="p-goal">→ Goal: look like the safest choice</span>
+      </div>
+      <div class="problem-item bn-card reveal"><span class="bn-scan"></span>
+        <div class="num"><span class="holo">43%</span></div>
+        <h3>Of attacks hit small business.</h3>
+        <p>Nearly half of all cyberattacks target small businesses — automated bots scan for template sites around the clock. Hand-coded, audited sites simply give them nothing to grab.</p>
+        <span class="p-goal">→ Goal: a hardened asset</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap trust-inner">
+    <div class="trust-stat"><div class="num">16+</div><p>Years building</p></div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat"><div class="num">50+</div><p>Projects delivered</p></div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat"><div class="num">100%</div><p>Hand-coded</p></div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat"><div class="num">48h</div><p>Sprint delivery</p></div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat"><div class="num" style="color:var(--terminal)">4h</div><p>Senior reply time</p></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="bn-ticker" aria-hidden="true">
+  <div class="bn-ticker-track" id="tickerTrack">
+    <span>Hand-coded <b>✦</b></span><span>Security-tested <b>✦</b></span><span>Sub-2s loads <b>✦</b></span><span>Fixed price <b>✦</b></span><span>Live preview from day 3 <b>✦</b></span><span>Team rank #1 Ireland — Hack The Box <b>✦</b></span><span>16+ years <b>✦</b></span><span>50+ projects <b>✦</b></span><span>Response in 4 working hours <b>✦</b></span><span>Worldwide delivery <b>✦</b></span>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="values step" id="values">
+  <div class="wrap">
+    <div class="values-header reveal">
+      <span class="label" data-scramble>What you get from Bureau Null</span>
+      <h2 class="display">Three jobs.<br>Done properly.</h2>
+    </div>
+    <div class="values-list">
+      <div class="value-item reveal">
+        <span class="vnum">/01</span>
+        <h3>Rank.</h3>
+        <p>Built for Google from the first line of code — semantic HTML, structured data, sub-2-second loads. <strong>You get found</strong> by people already searching for what you sell.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="vnum">/02</span>
+        <h3>Convert.</h3>
+        <p>Every section is engineered to move a visitor toward one action: contacting you. Clear offer, visible proof, zero friction. <strong>Traffic becomes revenue.</strong></p>
+      </div>
+      <div class="value-item reveal">
+        <span class="vnum">/03</span>
+        <h3>Last.</h3>
+        <p>Hand-coded, security-tested by Hack The Box Pro Labs practitioners, and maintained after launch. <strong>No plugin rot. No surprise breaches.</strong> An asset, not a liability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work step" id="work">
+  <div class="wrap">
+    <div class="work-header reveal">
+      <h2 class="display">Selected<br>work.</h2>
+      <p>Selected work — 50+ projects shipped since 2010, across e-commerce, luxury, logistics, fintech and construction. A few highlights — the full archive lives on the Work page.</p>
+    </div>
+    <div class="work-grid">
+      <a href="cases/2013-atelier-mirage.html" class="work-card reveal">
+        <div class="work-card-img"><img src="images/case_03_atelier.jpg" alt="Atelier Mirage — luxury interior studio website" width="1536" height="1024" loading="lazy" decoding="async"></div>
+        <div class="work-card-info">
+          <span class="label">2013 / Luxury Interior — Paris</span>
+          <h3>Atelier Mirage</h3>
+          <p>Editorial portfolio for a Parisian interior studio. French localisation, press archive, private client mood boards.</p>
+          <div class="work-card-meta"><span><span class="dot"></span>Editorial</span><span>Luxury</span></div>
+        </div>
+      </a>
+      <a href="cases/2024-securecloud.html" class="work-card reveal">
+        <div class="work-card-img"><img src="images/case_13_securecloud.jpg" alt="SecureCloud — cybersecurity SaaS dashboard" width="1184" height="864" loading="lazy" decoding="async"></div>
+        <div class="work-card-info">
+          <span class="label">2024 / Cybersecurity SaaS</span>
+          <h3>SecureCloud</h3>
+          <p>Real-time CVSS dashboard for a vulnerability scanner. Heavy data visualisation — still a 97 Lighthouse score.</p>
+          <div class="work-card-meta"><span><span class="dot"></span>React</span><span>D3.js</span></div>
+        </div>
+      </a>
+      <a href="cases/2026-slamen-carpentry.html" class="work-card reveal">
+        <div class="work-card-img"><img src="images/case_15_slamen.jpg" alt="Slamen Carpentry — construction website" width="1536" height="1024" loading="lazy" decoding="async"></div>
+        <div class="work-card-info">
+          <span class="label">2026 / Construction — Ireland</span>
+          <h3>Slamen Carpentry</h3>
+          <p>WebGL galleries, before/after sliders, local SEO — currently in build. Targets set in the signed scope.</p>
+          <div class="work-card-meta"><span><span class="dot"></span>In development</span><span>WebGL</span></div>
+        </div>
+      </a>
+    </div>
+    <div class="work-more reveal">
+      <a href="work.html" class="btn btn-outline">View the full archive →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes step">
+  <div class="wrap">
+    <div class="quotes-header reveal">
+      <span class="label" data-scramble>Client debriefs</span>
+      <h2 class="display">Results, in their words.</h2>
+    </div>
+    <div class="quotes-grid">
+      <div class="quote-card bn-card reveal"><span class="bn-scan"></span>
+        <div class="q-mark">“</div>
+        <p>Fixed price, live preview from day three, zero chasing. It felt less like hiring an agency and more like hiring a special unit.</p>
+        <div class="q-chip">DELIVERED ON SCHEDULE</div>
+        <div class="who"><b>Head of Investor Relations, Meridian Capital</b> · Fintech · 2021</div>
+        <a class="case-chip" href="cases/2021-meridian-capital.html">case →</a>
+      </div>
+      <div class="quote-card bn-card reveal"><span class="bn-scan"></span>
+        <div class="q-mark">“</div>
+        <p>They found two critical holes our previous agency swore did not exist. The report paid for itself before we finished reading it.</p>
+        <div class="q-chip">17 FINDINGS · 2 CRITICALS</div>
+        <div class="who"><b>CTO, Vanguard Security client</b> · WAST · retainer since 2020<br>name withheld under NDA — reference call available</div>
+        <a class="case-chip" href="cases/2020-vanguard-wast.html">case →</a>
+      </div>
+      <div class="quote-card bn-card reveal"><span class="bn-scan"></span>
+        <div class="q-mark">“</div>
+        <p>Fifteen years of word of mouth built this firm. The next fifteen need a website that works as hard as we do.</p>
+        <div class="q-chip">IN DEVELOPMENT — AT PROJECT KICKOFF</div>
+        <div class="who"><b>Owner, Slamen Carpentry</b> · Construction, Ireland · 2026</div>
+        <a class="case-chip" href="cases/2026-slamen-carpentry.html">case →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how step">
+  <div class="wrap">
+    <div class="how-header reveal">
+      <span class="label">Process</span>
+      <h2 class="display">Three steps.<br>No chaos.</h2>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-step">
+        <span class="num">STEP /01</span>
+        <h3>You describe the goal.</h3>
+        <p>Configure your project below or send one email. We reply within 4 working hours with questions, a fixed quote, and a start date.</p>
+        <span class="time">→ 1 day</span>
+      </div>
+      <div class="how-step">
+        <span class="num">STEP /02</span>
+        <h3>We design &amp; build.</h3>
+        <p>You see a live preview link from day three. Structured revision rounds keep everything on schedule. You never chase us — we report first.</p>
+        <span class="time">→ 2 days — 3 weeks</span>
+      </div>
+      <div class="how-step">
+        <span class="num">STEP /03</span>
+        <h3>You launch. We stay.</h3>
+        <p>Deployment, DNS, Google indexing, analytics. Optional security audit and care plan keep the site fast, ranked and patched for years.</p>
+        <span class="time">→ launch + ongoing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section step" id="pricing">
+  <div class="wrap">
+    <div class="calc-header reveal">
+      <span class="label">Transparent pricing</span>
+      <h2 class="display">Configure your project.</h2>
+      <p>No hidden fees, no hourly traps. Set the parameters — the investment updates in real time. Press <b>ⓘ</b> on any line to see exactly what you get.</p>
+      <p class="calc-scarcity">// SPRINTS START WITHIN 48H · FULL BUILDS ARE SLOTTED — THE CALENDAR FILLS FIRST-COME</p>
+      <p class="calc-scarcity" style="color:var(--dim)">// "Fixed price, live preview from day three, zero chasing." — Meridian Capital</p>
+    </div>
+    <div class="calc-container reveal">
+
+      <div class="tier-strip" id="tierStrip">
+        <button type="button" class="tier-cell" data-value="450">
+          <span class="tier-name">Sprint</span>
+          <span class="tier-price">€450</span>
+          <span class="tier-who">for when you need to exist online this week</span>
+        </button>
+        <button type="button" class="tier-cell" data-value="2200">
+          <span class="tier-name">Foundation</span>
+          <span class="tier-price">€2,200</span>
+          <span class="tier-who">for businesses ready to look established</span>
+        </button>
+        <button type="button" class="tier-cell is-hot" data-value="4600">
+          <span class="tier-flag">MOST CHOSEN</span>
+          <span class="tier-name">Professional</span>
+          <span class="tier-price">€4,600</span>
+          <span class="tier-who">for a site that sells, not just sits there</span>
+        </button>
+        <button type="button" class="tier-cell" data-value="7800">
+          <span class="tier-name">Elite</span>
+          <span class="tier-price">€7,800</span>
+          <span class="tier-who">// for market leaders — WebGL included</span>
+        </button>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Base package</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i1">i</button></div>
+            <span>Your starting point — everything builds on this</span>
+          </div>
+          <div class="calc-control">
+            <select id="basePackage">
+              <option value="450">Sprint — €450</option>
+              <option value="2200">Foundation — €2,200</option>
+              <option value="4600" selected>Professional — €4,600</option>
+              <option value="7800">Elite — €7,800</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-info" id="i1"><div class="calc-info-inner">
+          <strong>Sprint (€450):</strong> one-page site, live in 48 hours. Contact form, click-to-call, basic SEO. For when you need to exist online <em>this week</em>.<br>
+          <strong>Foundation (€2,200):</strong> up to 5 custom pages, project gallery, on-page SEO, 30-day support. For businesses ready to look established.<br>
+          <strong>Professional (€4,600):</strong> up to 8 pages, 3 SEO articles, before/after sliders, testimonials, 90+ speed score, 60-day support. <em>Most clients choose this.</em><br>
+          <strong>Elite (€7,800):</strong> up to 12 pages, WebGL motion, 5 SEO articles, lead automation, quarterly reports, 90-day priority support. For market leaders.
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Extra pages</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i2">i</button></div>
+            <span>€220 per page beyond your package limit</span>
+          </div>
+          <div class="calc-control">
+            <input type="range" id="extraPages" min="0" max="20" value="0">
+            <span class="calc-value" id="pagesValue">0</span>
+          </div>
+        </div>
+        <div class="calc-info" id="i2"><div class="calc-info-inner">
+          A "page" is any distinct URL: a service page, a project case study, a location page, a pricing page. <strong>More targeted pages = more ways to be found on Google.</strong> Each extra page is designed, written and optimised — not duplicated. <em>Example: a builder covering 4 towns wants 4 location pages.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>SEO articles</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i3">i</button></div>
+            <span>€160 per 1,000+ word article</span>
+          </div>
+          <div class="calc-control">
+            <input type="range" id="blogPosts" min="0" max="20" value="0">
+            <span class="calc-value" id="postsValue">0</span>
+          </div>
+        </div>
+        <div class="calc-info" id="i3"><div class="calc-info-inner">
+          Each article is <strong>researched around a keyword your customers actually search</strong> (e.g. "house extension cost ireland"), written to convert, and internally linked to your service pages. Articles compound: one ranking page can bring qualified visitors for years. <em>Cheaper than ads, longer-lasting.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>WebGL motion design</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i4">i</button></div>
+            <span>Custom shaders, 3D, cinematic scroll effects</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="webglToggle"><span style="font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--dim)">+ €900</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="i4"><div class="calc-info-inner">
+          The difference between "a website" and "an experience". Liquid image transitions, 3D scenes, physics-based motion. <strong>This is what Awwwards-level sites use</strong> — and what makes visitors screenshot your homepage and send it to colleagues. <em>Included free in Elite.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Security audit (WAST)</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i5">i</button></div>
+            <span>OWASP Top 10 test + fix roadmap</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="wastToggle"><span style="font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--dim)">+ €1,500</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="i5"><div class="calc-info-inner">
+          Our offensive-security operators attack your site the way criminals would — then hand you a plain-English report ranked by risk, with exact fix instructions. <strong>Average ransomware recovery costs €120,000.</strong> This is the insurance. <em><a href="security.html" style="color:var(--terminal)">Full details on the Security page →</a></em>
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Managed hosting — 1 year</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i6">i</button></div>
+            <span>We run the servers so you never think about them</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="hostingToggle"><span style="font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--dim)">+ €650</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="i6"><div class="calc-info-inner">
+          Premium EU hosting, SSL, daily backups, uptime monitoring, CDN. <strong>If the site goes down at 3am, we fix it at 3am</strong> — you never touch a hosting panel. Renews at €650/yr, cancel anytime.
+        </div></div>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong>Care plan</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i7">i</button></div>
+            <span>Ongoing growth after launch</span>
+          </div>
+          <div class="calc-control">
+            <select id="carePlan">
+              <option value="0">None</option>
+              <option value="150">Monitor — €150/mo</option>
+              <option value="450">Grow — €450/mo</option>
+              <option value="950">Command — €950/mo</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-info" id="i7"><div class="calc-info-inner">
+          <strong>Monitor (€150/mo):</strong> hosting, backups, security patches, 1 edit/month.<br>
+          <strong>Grow (€450/mo):</strong> all of Monitor + 2 SEO articles/month + monthly speed reports + 5 edits.<br>
+          <strong>Command (€950/mo):</strong> all of Grow + unlimited edits + 24h response + quarterly redesigns. <em>For businesses whose website is their main sales channel.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-row" style="border-bottom:none">
+        <div class="calc-row-top">
+          <div class="calc-label">
+            <div class="t"><strong style="color:var(--terminal)">Cash payment</strong><button type="button" class="info-btn" aria-label="What's included" data-info="i8">i</button></div>
+            <span>Prefer to pay in cash on delivery? Declare it here — price unchanged</span>
+          </div>
+          <div class="calc-control">
+            <label class="calc-toggle"><input type="checkbox" id="cashToggle"><span style="font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--terminal)">€0 adjustment</span></label>
+          </div>
+        </div>
+        <div class="calc-info" id="i8"><div class="calc-info-inner">
+          Some clients prefer to settle in cash when the finished site is handed over — money immediately, no processor fees, no waiting. <strong>Fully legal and fully declared:</strong> you receive a VAT invoice and receipt exactly like a bank transfer. Ticking this box simply declares your preference — we confirm the arrangement in your contract. <em>Same fixed price either way.</em>
+        </div></div>
+      </div>
+
+      <div class="calc-total">
+        <div class="label">YOUR INVESTMENT</div>
+        <div class="price" id="totalPrice">€4,600</div>
+        <div class="price-note">+ VAT 23% where applicable · 50% deposit to begin · 50% on launch</div>
+        <div class="savings" id="savingsText">Cash payment preference noted — settled on delivery, price unchanged</div>
+        <div class="calc-lock">// locked in writing: fixed quote · 100% refund if we can't deliver · you own the result on final payment</div>
+      </div>
+
+      <div class="policy-gate">
+        <label class="policy-check">
+          <input type="checkbox" id="policyCheck">
+          <span class="txt">I have read and agree to the
+            <a href="#" data-modal="m-terms">Terms of Service</a>,
+            <a href="#" data-modal="m-payment">Payment Terms</a>,
+            <a href="#" data-modal="m-refund">Refund Policy</a> and
+            <a href="#" data-modal="m-privacy">Privacy Policy</a>.
+            I understand the 50/50 payment structure and that work begins after the deposit is received.</span>
+        </label>
+        <span class="policy-hint">// tick to unlock — 4 seconds, protects both sides</span>
+      </div>
+
+      <div class="calc-cta">
+        <a href="mailto:hello@bureaunull.com" class="btn btn-primary" id="calcCta">Book this configuration →</a>
+        <button type="button" class="copy-mail" data-copy="hello@bureaunull.com">⧉ copy address</button>
+        <span class="hint" id="ctaHint">// opens a pre-filled email — no obligation, fixed quote confirmed in writing</span>
+        <span class="hint">// no mail client? this is the address</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<!-- FAQ -->
+<section class="faq step" id="faq">
+  <div class="wrap">
+    <div class="faq-header reveal">
+      <span class="label" data-scramble>FAQ</span>
+      <h2 class="display">Asked before<br>you ask.</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="faq-item reveal">
+        <summary>How fixed is a fixed quote?</summary>
+        <p>Fully fixed. The calculator gives an estimate; before any work begins you receive a written quote that locks scope, price and timeline, valid for 14 days. If you change the scope mid-project, the difference is quoted in advance — never invoiced without your approval.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What if I need changes after launch?</summary>
+        <p>Every package includes a support window (30–90 days depending on tier) during which bugs are fixed free. After that, individual edits are quoted per task, or covered by a monthly care plan you can cancel with 30 days' notice.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Do you use WordPress?</summary>
+        <p>No. Every site is hand-coded HTML, CSS and JavaScript. No themes, no plugin rot, no page-builder bloat — which is also why our sites load in under two seconds and present a far smaller attack surface.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How do payments work?</summary>
+        <p>50% to schedule your build slot, 50% on delivery. Direct bank transfer (SEPA) is standard; cash on delivery is possible and fully declared with a VAT invoice and receipt. Prices are in EUR, VAT 23% where applicable. We do not take card payments.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Why is there no phone number?</summary>
+        <p>Email plus scheduled video calls — everything in writing, nothing lost. No misheard requirements, no "but you said on the phone". A senior engineer replies within 4 working hours.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What happens if you disappear?</summary>
+        <p>If we cannot complete your project for reasons on our side, you receive a 100% refund of everything paid, including the deposit. On full payment you own the final design and content, with source code licensed to you perpetually. Bureau Null is a registered Irish business — full legal details, CRO and VAT numbers on every quote and invoice.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Isn't it expensive?</summary>
+        <p>Compare it with the cost of one stolen client. If a serious enquiry is worth €1,000 to you and your current site quietly loses two a month to a competitor whose site loads faster and looks safer, the "expensive" site pays for itself in a quarter. And the quote is fixed — the number you approve is the number on the invoice.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>My cousin can build it — why you?</summary>
+        <p>They probably can build something that looks like a website. What they will not hand you is semantic HTML Google can rank, a 90+ speed score, and a security test by people who break websites for a living. Cheap sites are the most expensive kind — you pay for them twice.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What if I don't like the design?</summary>
+        <p>You approve the design before we build it. Wireframe, then visual design, then build — each stage signed off by you, with structured revision rounds in writing. You never see a finished surprise; you see a series of decisions you made.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Why is the team anonymous?</summary>
+        <p>You hire outcomes and one accountable name: Robert Jurkevich, CEO, signs every quote and invoice. The specialists stay off the marketing page because clients hire results, not headshots. References available on request.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- BREAKOUT — interactive security teaser -->
+<section class="breakout step" id="breakout">
+  <div class="breakout-canvas-wrap">
+    <canvas id="breakoutCanvas"></canvas>
+    <div class="breakout-hud" id="hudLeft"></div>
+    <div class="breakout-hud-2" id="hudRight"></div>
+    <div class="breakout-content">
+      <div class="inner">
+        <h2 class="display">Every site we ship<br>has survived us. <span class="strike">Has yours?</span></h2>
+        <p>Find out before someone less friendly does. One fixed-price audit — and you know exactly where you stand, what to fix first, and what it costs.</p>
+        <a href="security.html" class="breakout-cta">See the full audit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUREAU BRIEF — newsletter -->
+<section class="brief step">
+  <div class="wrap brief-inner">
+    <div class="brief-copy reveal">
+      <span class="label" data-scramble>The Bureau Brief — monthly</span>
+      <h2 class="display">One teardown.<br>One exploit.<br><span class="holo">Five minutes.</span></h2>
+      <p>Once a month we take apart one real website and one real attack — in plain English, with the numbers attached. Read by owners who like knowing what their website is actually doing.</p>
+      <p class="brief-perk">Subscribers get the full teardown archive and, occasionally, a subscriber-only offer. <b>One email a month — worth the five minutes.</b></p>
+    </div>
+    <form class="brief-form reveal" id="briefForm" novalidate>
+      <label for="briefEmail">Work email</label>
+      <div class="brief-row">
+        <input type="email" id="briefEmail" autocomplete="email" placeholder="jane@company.ie">
+        <button type="submit" class="btn btn-primary">Subscribe →</button>
+      </div>
+      <span class="brief-note">// one email a month · unsubscribe anytime · your address never touches this server — the subscribe button simply opens your mail client</span>
+      <div class="cf-success" id="briefSuccess">> SUBSCRIPTION COMPILED.<br>> Hit send in your email client and you are on the list.</div>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact step" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="label">Contact</span>
+        <h2 class="display">One email.<br>Four hours.</h2>
+        <p>Describe the goal in two sentences. A senior engineer — never a salesperson — replies within 4 working hours with questions, a fixed quote and a start date.</p>
+        <span class="mono-line">hello@bureaunull.com</span>
+        <span class="mono-line" style="color:var(--dim)">// Worldwide · remote-first · NDA on request</span>
+        <span class="mono-line" style="color:var(--dim)">// Every reply signed by Robert Jurkevich, CEO — the same name that signs your quote and invoice.</span>
+        <span class="mono-line" style="color:var(--dim)">// Registered Irish business — CRO and VAT numbers on every quote and invoice. Bank transfer or declared cash, always invoiced. Your money leaves a paper trail; so do we.</span>
+      </div>
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cfName">Name</label>
+            <input type="text" id="cfName" autocomplete="name" placeholder="Jane Murphy">
+            <span class="err">// required</span>
+          </div>
+          <div class="cf-field">
+            <label for="cfEmail">Email</label>
+            <input type="email" id="cfEmail" autocomplete="email" placeholder="jane@company.ie">
+            <span class="err">// valid email required</span>
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="cfTopic">Topic</label>
+          <select id="cfTopic">
+            <option>New website</option>
+            <option>Security audit / pentest</option>
+            <option>Website + security (both)</option>
+            <option>Care plan</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label for="cfMsg">Project, in two sentences</label>
+          <textarea id="cfMsg" placeholder="We run a physiotherapy clinic in Galway. Our current site is from 2017 and we need one that actually brings bookings."></textarea>
+          <span class="err">// tell us at least a sentence</span>
+        </div>
+        <button type="submit" class="btn btn-primary cf-submit">Get my fixed quote →</button>
+        <div class="cf-alt">
+          <button type="button" class="copy-mail" data-copy="hello@bureaunull.com">⧉ copy address</button>
+          <span>// no mail client? this is the address</span>
+        </div>
+        <div class="cf-note">// opens your email client with everything pre-filled — nothing is stored on this site</div>
+        <div class="cf-success" id="cfSuccess">> MESSAGE COMPILED.<br>> Your email client should now be open.<br>> If not: hello@bureaunull.com</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Bureau<span>Null</span></a>
+        <p>A small, senior team designing, hand-coding and security-testing websites for clients worldwide. Serious goals, serious budgets — available anywhere.</p>
+      </div>
+      <div class="footer-col">
+        <p class="f-head">Navigation</p>
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="security.html">Security</a>
+        <a href="journal.html">Journal</a>
+        <a href="careers.html">Careers</a>
+      </div>
+      <div class="footer-col">
+        <p class="f-head">Legal</p>
+        <a href="#" data-modal="m-terms">Terms of Service</a>
+        <a href="#" data-modal="m-payment">Payment Terms</a>
+        <a href="#" data-modal="m-refund">Refund Policy</a>
+        <a href="policies.html">All policies (full page)</a>
+      </div>
+      <div class="footer-col">
+        <p class="f-head">Contact</p>
+        <a href="mailto:hello@bureaunull.com">hello@bureaunull.com</a>
+        <a href="#contact">Contact form</a>
+        <span style="color:var(--dim);font-size:.85rem;display:block;margin-top:8px">Response within 4 working hours. Worldwide.</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Bureau Null. All rights reserved.</div>
+      <div>No cookies · No trackers · No ads — we practice what we audit &nbsp;·&nbsp; ~$ exit 0</div>
+    </div>
+  </div>
+</footer>
+
+<!-- POLICY MODALS -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head"><h3 id="modalTitle">Policy</h3><button class="modal-close" id="modalClose" aria-label="Close">✕</button></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ---------- LOADER ---------- */
+const loaderTerm = document.getElementById('loader-term');
+const loaderText = '~$ bureau_null init --project yours';
+let li = 0;
+(function typeLoader(){
+  if (li < loaderText.length){ loaderTerm.textContent += loaderText.charAt(li++); setTimeout(typeLoader, 38 + Math.random()*60); }
+})();
+if(window.gsap){
+gsap.to('#loader',{opacity:0,duration:.8,delay:1.2,onComplete:()=>document.getElementById('loader').style.display='none'});
+
+/* ---------- HERO ---------- */
+gsap.to('.hero h1 .line-inner',{y:0,duration:1.2,stagger:.12,ease:"power3.out",delay:.4});
+gsap.from('.hero-subhead',{opacity:0,y:20,duration:.8,ease:"power3.out",delay:1});
+gsap.from('.hero-btns',{opacity:0,y:20,duration:.8,ease:"power3.out",delay:1});
+gsap.from('.hero-steps',{opacity:0,y:16,duration:.8,ease:"power3.out",delay:1.3});
+gsap.from('#heroCanvas',{opacity:0,duration:1.6,ease:"power2.out",delay:.3});
+
+/* subtle hero parallax */
+gsap.to('.hero-bg',{yPercent:14,ease:"none",scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+}
+
+/* ---------- NAV / STICKY PILL ---------- */
+const nav = document.getElementById('nav');
+const pill = document.getElementById('stickyPill');
+const calcSection = document.getElementById('pricing');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  const calcRect = calcSection.getBoundingClientRect();
+  const calcVisible = calcRect.top < window.innerHeight && calcRect.bottom > 0;
+  pill.classList.toggle('show', window.scrollY > 600 && !calcVisible);
+},{passive:true});
+
+/* ---------- REVEAL ---------- */
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target);}});},{threshold:.1});
+reveals.forEach(el=>obs.observe(el));
+
+/* ---------- CALCULATOR ---------- */
+const $ = id => document.getElementById(id);
+const basePackage=$('basePackage'),extraPages=$('extraPages'),blogPosts=$('blogPosts'),
+      webglToggle=$('webglToggle'),wastToggle=$('wastToggle'),hostingToggle=$('hostingToggle'),
+      carePlan=$('carePlan'),cashToggle=$('cashToggle'),totalPrice=$('totalPrice'),
+      savingsText=$('savingsText'),pagesValue=$('pagesValue'),postsValue=$('postsValue'),
+      calcCta=$('calcCta'),policyCheck=$('policyCheck'),ctaHint=$('ctaHint');
+
+function updateCalc(){
+  let total = parseInt(basePackage.value);
+  total += parseInt(extraPages.value)*220;
+  total += parseInt(blogPosts.value)*160;
+  if(webglToggle.checked) total+=900;
+  if(wastToggle.checked) total+=1500;
+  if(hostingToggle.checked) total+=650;
+  const care = parseInt(carePlan.value);
+  totalPrice.textContent = '€'+total.toLocaleString()+(care>0?' + €'+care+'/mo':'');
+  savingsText.classList.toggle('visible',cashToggle.checked);
+  if(cashToggle.checked) savingsText.textContent='Cash payment preference noted — settled on delivery, price unchanged';
+
+  let s = 'Project: '+basePackage.options[basePackage.selectedIndex].text;
+  if(extraPages.value>0) s+=', +'+extraPages.value+' pages';
+  if(blogPosts.value>0) s+=', +'+blogPosts.value+' articles';
+  if(webglToggle.checked) s+=', WebGL';
+  if(wastToggle.checked) s+=', WAST audit';
+  if(hostingToggle.checked) s+=', Hosting 1yr';
+  if(care>0) s+=', Care: '+carePlan.options[carePlan.selectedIndex].text;
+  if(cashToggle.checked) s+=', Cash payment on delivery (price unchanged)';
+  s+=' — Total €'+total.toLocaleString()+(care>0?' + €'+care+'/mo':'');
+  const body='Hello Bureau Null,\n\nI would like to book the following configuration:\n\n'+s+
+    '\n\nName:\nCompany:\nEmail:\nCurrent website (if any):\nProject goal, in one sentence:\n\n'+
+    'I have read and agree to the Terms of Service, Payment Terms, Refund Policy and Privacy Policy: '+
+    (policyCheck.checked?'YES':'NO')+' — confirmed in engagement letter\n\n— sent from the bureaunull.com pricing calculator';
+  calcCta.href = 'mailto:hello@bureaunull.com?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(body);
+}
+
+[basePackage,extraPages,blogPosts,webglToggle,wastToggle,hostingToggle,carePlan,cashToggle].forEach(el=>{
+  el.addEventListener('input',updateCalc); el.addEventListener('change',updateCalc);
+});
+extraPages.addEventListener('input',()=>pagesValue.textContent=extraPages.value);
+blogPosts.addEventListener('input',()=>postsValue.textContent=blogPosts.value);
+policyCheck.addEventListener('change',updateCalc);
+updateCalc();
+ctaHint.textContent='// opens a pre-filled email — no obligation, fixed quote confirmed in writing';
+
+/* policy gate: CTA stays locked until the box is ticked */
+function gateCta(){calcCta.classList.toggle('disabled',!policyCheck.checked);}
+policyCheck.addEventListener('change',gateCta);
+gateCta();
+
+/* tier strip: click sets the base-package dropdown — dropdown stays the control */
+const tierCells=document.querySelectorAll('.tier-cell');
+function syncTier(){tierCells.forEach(x=>x.classList.toggle('active',x.dataset.value===basePackage.value));}
+tierCells.forEach(c=>c.addEventListener('click',()=>{
+  basePackage.value=c.dataset.value;
+  basePackage.dispatchEvent(new Event('change',{bubbles:true}));
+}));
+basePackage.addEventListener('change',syncTier);
+syncTier();
+
+/* info tooltips */
+document.querySelectorAll('.info-btn').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.preventDefault();
+    const panel = document.getElementById(b.dataset.info);
+    const wasOpen = panel.classList.contains('open');
+    document.querySelectorAll('.calc-info').forEach(p=>p.classList.remove('open'));
+    if(!wasOpen) panel.classList.add('open');
+  });
+});
+
+/* ---------- POLICY MODALS ---------- */
+const policies={
+'m-terms':{title:'Terms of Service',body:`
+<h4>1. Services</h4>
+<p>Bureau Null ("we", "us") provides website design, development, search optimisation and web application security testing as described in your written quote. The quote — not this website — defines final scope, deliverables and timeline.</p>
+<h4>2. Quotes &amp; validity</h4>
+<p>All quotes are fixed-price and valid for 14 days. The calculator on this site provides estimates; a written quote confirms the final figure before any work begins.</p>
+<h4>3. Client responsibilities</h4>
+<ul><li>Provide content, brand assets and access credentials within the agreed schedule.</li><li>If required materials are not delivered within 14 days of our request, the project pauses; resuming carries a €150 scheduling fee.</li><li>You confirm you own or licence all materials you send us.</li></ul>
+<h4>4. Revisions</h4>
+<p>Each package includes the stated number of revision rounds. Additional rounds are quoted in advance — never invoiced without your approval.</p>
+<h4>5. Intellectual property</h4>
+<p>On receipt of full payment, you own the final design and content. We retain the right to display the work in our portfolio unless you request otherwise in writing. Source code is licensed to you perpetually. Third-party assets (fonts, libraries) remain under their own licences.</p>
+<h4>6. Liability</h4>
+<p>Our total liability for any claim arising from a project is limited to the fees actually paid for that project. We are not liable for indirect or consequential loss — lost profits, lost revenue, lost data or business interruption. Nothing in these terms excludes liability that cannot lawfully be excluded.</p>
+<h4>7. Business customers</h4>
+<p>Our services are directed at businesses. By ordering, you confirm you act wholly or mainly in the course of a trade, business or profession.</p>
+<h4>8. Governing law</h4>
+<p>These terms are governed by the laws of Ireland. Disputes are handled exclusively in Irish courts.</p>`},
+'m-payment':{title:'Payment Terms',body:`
+<h4>1. Structure</h4>
+<p>50% deposit to reserve your build slot and begin work. 50% on delivery, before final handover or go-live. Work never starts before the deposit clears.</p>
+<h4>2. Methods</h4>
+<p>Direct bank transfer (SEPA) is our standard method. Every payment is invoiced and declared. Prices are in EUR; VAT at 23% is added where applicable.</p>
+<h4>3. Late payment</h4>
+<p>Invoices unpaid after 14 days accrue 2% per month interest. Persistent non-payment may result in site suspension until resolved — after written notice.</p>
+<h4>4. Chargebacks &amp; fraud</h4>
+<p>We keep signed agreements, delivery records and preview logs. Fraudulent chargebacks are contested with full documentation and carry a €250 administrative fee plus legal costs.</p>
+<h4>5. Care plans</h4>
+<p>Monthly plans bill in advance, cancel any time with 30 days' notice. No refunds for partial months already started.</p>`},
+'m-refund':{title:'Refund Policy',body:`
+<h4>1. Before work starts</h4>
+<p>Full refund of your deposit minus a €50 administration fee — no questions asked — any time before work begins.</p>
+<h4>2. During the project</h4>
+<p>If you cancel mid-project, you pay pro-rata for completed deliverables (designs, code, content) at the quoted project rate. The remainder is refunded within 14 days.</p>
+<h4>3. After delivery</h4>
+<p>Delivered and approved work is not refundable. Every package instead includes a support window (30–90 days depending on tier) during which we fix bugs free of charge.</p>
+<h4>4. If we cancel</h4>
+<p>If we cannot complete your project for reasons on our side, you receive a 100% refund of everything paid — including the deposit.</p>
+<h4>5. Deposits &amp; scheduling</h4>
+<p>The deposit reserves a build slot we decline other work for. Once work has begun, the deposit is non-refundable except under §4.</p>
+<h4>6. Fraud &amp; chargebacks</h4>
+<p>Fraudulent disputes or chargebacks are contested with signed agreements, delivery records and preview logs, and carry a €250 administrative fee plus recovery costs. Suspected fraud is reported to the relevant authorities.</p>`},
+'m-privacy':{title:'Privacy Policy',body:`
+<h4>1. What we collect</h4>
+<p>Only what you give us directly: your name, email and project details when you contact us or request a quote. This site sets no advertising cookies and runs no third-party trackers.</p>
+<h4>2. How we use it</h4>
+<p>To reply to your enquiry, prepare quotes, deliver projects and invoice. Nothing else. We never sell, rent or share your data with third parties for marketing.</p>
+<h4>3. Retention</h4>
+<p>Project correspondence is kept for up to 6 years for tax and legal compliance (Irish Revenue requirements), then deleted.</p>
+<h4>4. Your GDPR rights</h4>
+<ul><li>Access, correct or delete your personal data at any time.</li><li>Withdraw consent for future contact.</li><li>Complain to the Data Protection Commission (dataprotection.ie).</li></ul>
+<h4>5. Security</h4>
+<p>Unsurprisingly: encrypted transport, access-controlled storage, and the same rigour we apply to client audits. Contact hello@bureaunull.com for any data request.</p>`}
+};
+
+const overlay=$('modalOverlay'),mTitle=$('modalTitle'),mBody=$('modalBody'),mClose=$('modalClose');
+document.querySelectorAll('[data-modal]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const p=policies[a.dataset.modal];
+    if(!p) return;
+    mTitle.textContent=p.title; mBody.innerHTML=p.body;
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+});
+function closeModal(){overlay.classList.remove('open');document.body.style.overflow='';}
+mClose.addEventListener('click',closeModal);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ---------- HERO LIVE CANVAS (signal streaks) ---------- */
+(function(){
+  const cv=document.getElementById('heroCanvas');
+  if(!cv) return;
+  const ctx=cv.getContext('2d');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W,H,streaks=[];
+  const PAL=[['#3a3a44',.40],['#565664',.24],['#00e676',.16],['#8a8a98',.12],['#00e676',.05],['#e8e8ec',.03]];
+  function pick(){let r=Math.random(),a=0;for(const[c,p]of PAL){a+=p;if(r<a)return c;}return PAL[0][0];}
+  function resize(){
+    W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;
+    ctx.fillStyle='#060608';ctx.fillRect(0,0,W,H);
+    streaks=[];
+    const n=Math.floor(W/(7*devicePixelRatio));
+    for(let i=0;i<n;i++){
+      streaks.push({x:Math.random()*W,y:Math.random()*H,w:(1+Math.random()*3)*devicePixelRatio,
+        len:(40+Math.random()*260)*devicePixelRatio,sp:(0.6+Math.random()*3.4)*devicePixelRatio,
+        c:pick(),a:.25+Math.random()*.55,up:Math.random()>.5});
+    }
+  }
+  resize();window.addEventListener('resize',resize);
+  function frame(){
+    ctx.fillStyle='rgba(6,6,8,'+(reduced?1:.22)+')';ctx.fillRect(0,0,W,H);
+    for(const s of streaks){
+      const g=ctx.createLinearGradient(s.x,s.y,s.x,s.y+(s.up?-s.len:s.len));
+      g.addColorStop(0,s.c);g.addColorStop(1,'rgba(6,6,8,0)');
+      ctx.globalAlpha=s.a;ctx.fillStyle=g;
+      ctx.fillRect(s.x,s.up?s.y-s.len:s.y,s.w,s.len);
+      ctx.globalAlpha=1;
+      s.y+=s.up?-s.sp:s.sp;
+      if(s.up&&s.y+s.len<0){s.y=H+Math.random()*200;s.x=Math.random()*W;}
+      if(!s.up&&s.y-s.len>H){s.y=-Math.random()*200;s.x=Math.random()*W;}
+    }
+    if(!reduced)requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ---------- BREAKOUT CANVAS — perimeter scan ----------
+   Red exposure field follows the cursor over a quiet node grid.
+   Monochrome + red. No green, no celebration — just the threat. -- */
+(function(){
+  const cv=document.getElementById('breakoutCanvas');
+  if(!cv) return;
+  const ctx=cv.getContext('2d');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const dpr=Math.min(devicePixelRatio||1,2);
+  const hudL=document.getElementById('hudLeft'),hudR=document.getElementById('hudRight');
+  let W,H,t=0,mx=-9999,my=-9999,hover=false;
+  let nodes=[],links=[],exposed=0,exposedTotal=0,scans=0;
+
+  function build(){
+    W=cv.width=cv.offsetWidth*dpr;H=cv.height=cv.offsetHeight*dpr;
+    nodes=[];links=[];
+    const cols=Math.max(12,Math.floor(cv.offsetWidth/120)),rows=7;
+    const gx=W/(cols+1),gy=H/(rows+1);
+    for(let r=1;r<=rows;r++)for(let c=1;c<=cols;c++){
+      nodes.push({
+        x:gx*c+(Math.random()-.5)*gx*.4, y:gy*r+(Math.random()-.5)*gy*.4,
+        r:(1.4+Math.random()*1.6)*dpr,
+        heat:0, seed:Math.random()*Math.PI*2
+      });
+    }
+    for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+      if(Math.hypot(dx,dy)<gx*1.45)links.push([i,j]);
+    }
+  }
+  build();window.addEventListener('resize',build);
+
+  const wrap=cv.parentElement;
+  wrap.addEventListener('mousemove',e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)*dpr;my=(e.clientY-r.top)*dpr;hover=true;});
+  wrap.addEventListener('mouseleave',()=>{hover=false;});
+  wrap.addEventListener('touchmove',e=>{const r=cv.getBoundingClientRect();const tt=e.touches[0];mx=(tt.clientX-r.left)*dpr;my=(tt.clientY-r.top)*dpr;hover=true;},{passive:true});
+
+  /* touch fallback: no cursor on mobile — run an automated "attack" drift
+     once the section enters the viewport */
+  const touchOnly=window.matchMedia('(hover: none)').matches;
+  let autoAttack=false;
+  if(touchOnly){
+    new IntersectionObserver(es=>{es.forEach(en=>{autoAttack=en.isIntersecting;});},{threshold:.25}).observe(wrap);
+  }
+
+  const R=170*dpr;
+
+  function hud(){
+    if(!hudL)return;
+    const coverage=Math.min(100,Math.round(t*2.4)%101);
+    hudL.innerHTML='> PERIMETER SCAN — LIVE<br>> NODES MAPPED: '+nodes.length+'<br>> COVERAGE: '+coverage+'%<br><span class="hud-alert">> EXPOSED NOW: '+exposed+'</span>';
+    hudR.innerHTML='EXPOSURES LOGGED: '+exposedTotal+'<br>SCAN SWEEPS: '+scans+'<br>OWASP TOP 10: COVERED<br>~$ ./audit --target=yours';
+  }
+
+  let scanX=0;
+  function frame(){
+    t+=reduced?0:.016;
+    if(touchOnly){
+      if(autoAttack&&nodes.length){
+        hover=true;
+        const nt=nodes[Math.floor(performance.now()/900)%nodes.length];
+        mx+=(nt.x-mx)*.05; my+=(nt.y-my)*.05;
+      }else{hover=false;}
+    }
+    ctx.fillStyle='#050507';ctx.fillRect(0,0,W,H);
+    exposed=0;
+
+    for(const n of nodes){
+      const d=Math.hypot(n.x-mx,n.y-my);
+      const hot=hover&&d<R;
+      if(hot&&n.heat===0)exposedTotal++;
+      n.heat=hot?Math.min(1,n.heat+.06):Math.max(0,n.heat-.012);
+      if(n.heat>.4)exposed++;
+    }
+
+    /* faint grid links; red where exposed */
+    for(const [i,j] of links){
+      const a=nodes[i],b=nodes[j];
+      const g=Math.max(a.heat,b.heat);
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+      ctx.strokeStyle=g>.05?'rgba(239,68,68,'+(g*.4)+')':'rgba(232,232,236,.05)';
+      ctx.lineWidth=dpr*.8;ctx.stroke();
+    }
+
+    /* nodes */
+    for(const n of nodes){
+      const pulse=1+Math.sin(t*1.6+n.seed)*.12;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r*pulse*(1+n.heat*.9),0,7);
+      ctx.fillStyle=n.heat>.05?'rgba(239,68,68,'+(.25+n.heat*.7)+')':'rgba(190,190,200,.4)';
+      ctx.fill();
+    }
+
+    /* red exposure field at cursor */
+    if(hover&&!reduced){
+      const g=ctx.createRadialGradient(mx,my,0,mx,my,R);
+      g.addColorStop(0,'rgba(239,68,68,.12)');g.addColorStop(.7,'rgba(239,68,68,.04)');g.addColorStop(1,'rgba(239,68,68,0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(mx,my,R,0,7);ctx.fill();
+      ctx.setLineDash([4*dpr,8*dpr]);ctx.lineDashOffset=-t*30*dpr;
+      ctx.beginPath();ctx.arc(mx,my,R*.62,0,7);
+      ctx.strokeStyle='rgba(239,68,68,.45)';ctx.lineWidth=dpr;ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.strokeStyle='rgba(239,68,68,.6)';ctx.lineWidth=dpr;
+      ctx.beginPath();
+      ctx.moveTo(mx-14*dpr,my);ctx.lineTo(mx-4*dpr,my);ctx.moveTo(mx+4*dpr,my);ctx.lineTo(mx+14*dpr,my);
+      ctx.moveTo(mx,my-14*dpr);ctx.lineTo(mx,my-4*dpr);ctx.moveTo(mx,my+4*dpr);ctx.lineTo(mx,my+14*dpr);
+      ctx.stroke();
+    }
+
+    /* slow scan sweep */
+    scanX=(scanX+(reduced?0:1.1)*dpr)%(W+400);
+    if(scanX<2*dpr)scans++;
+    const sg=ctx.createLinearGradient(scanX-200,0,scanX,0);
+    sg.addColorStop(0,'rgba(232,232,236,0)');sg.addColorStop(1,'rgba(232,232,236,.045)');
+    ctx.fillStyle=sg;ctx.fillRect(scanX-200,0,200,H);
+    ctx.fillStyle='rgba(232,232,236,.28)';ctx.fillRect(scanX,0,1*dpr,H);
+
+    if(Math.floor(t*8)%4===0)hud();
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ---------- BUREAU BRIEF (newsletter) ---------- */
+(function(){
+  const f=document.getElementById('briefForm');
+  if(!f)return;
+  f.addEventListener('submit',e=>{
+    e.preventDefault();
+    const em=document.getElementById('briefEmail');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em.value.trim())){em.focus();em.style.borderColor='var(--red)';return;}
+    const subject='SUBSCRIBE — The Bureau Brief';
+    const body='Please add me to The Bureau Brief.\n\nEmail: '+em.value.trim()+'\n\n// one email a month · unsubscribe anytime';
+    window.location.href='mailto:hello@bureaunull.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    document.getElementById('briefSuccess').style.display='block';
+  });
+})();
+
+/* ---------- CONTACT FORM ---------- */
+(function(){
+  const form=document.getElementById('contactForm');
+  if(!form)return;
+  const name=document.getElementById('cfName'),email=document.getElementById('cfEmail'),
+        topic=document.getElementById('cfTopic'),msg=document.getElementById('cfMsg'),
+        ok=document.getElementById('cfSuccess');
+  function mark(el,valid){el.closest('.cf-field').classList.toggle('invalid',!valid);return valid;}
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const v1=mark(name,name.value.trim().length>1);
+    const v2=mark(email,/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim()));
+    const v3=mark(msg,msg.value.trim().length>10);
+    if(!(v1&&v2&&v3))return;
+    const subject='['+topic.value+'] Enquiry from '+name.value.trim();
+    const body='Name: '+name.value.trim()+'\nEmail: '+email.value.trim()+'\nTopic: '+topic.value+'\n\n'+msg.value.trim()+'\n\n— sent from bureaunull.com contact form';
+    window.location.href='mailto:hello@bureaunull.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    ok.style.display='block';
+    form.querySelector('.cf-submit').style.display='none';
+    form.querySelector('.cf-note').style.display='none';
+  });
+})();
+
+/* ---------- SMOOTH ANCHORS ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){
+  const href=this.getAttribute('href');
+  if(href==='#') return;
+  const t=document.querySelector(href);
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+}));
+</script>
+<script src="brand.js"></script>
+
+
+<!-- BN/SYSLOG :: the door every client opens first. there are seven of us. :: Qk57d :: walk the path a client walks — the journey is the order -->
+</body>
+</html>

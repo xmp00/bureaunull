@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<title>Small business cybersecurity in Ireland: what actually matters in 2026 — Bureau Null</title>
+<meta name="description" content="Small business cybersecurity in Ireland, without the fear marketing: the five controls that stop most attacks, real breach statistics, and what a WAST actually buys you.">
+<link rel="canonical" href="https://bureaunull.com/journal/small-business-cybersecurity-ireland.html">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-02-14">
+<meta property="og:site_name" content="Bureau Null">
+<meta property="og:title" content="Small business cybersecurity in Ireland: what actually matters in 2026 — Bureau Null">
+<meta property="og:description" content="Small business cybersecurity in Ireland, without the fear marketing: the five controls that stop most attacks, real breach statistics, and what a WAST actually buys you.">
+<meta property="og:url" content="https://bureaunull.com/journal/small-business-cybersecurity-ireland.html">
+<meta property="og:image" content="https://bureaunull.com/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="624">
+<meta property="og:image:alt" content="Bureau Null — websites that win clients. Design, code, security.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Small business cybersecurity in Ireland: what actually matters in 2026 — Bureau Null">
+<meta name="twitter:description" content="Small business cybersecurity in Ireland, without the fear marketing: the five controls that stop most attacks, real breach statistics, and what a WAST actually buys you.">
+<meta name="twitter:image" content="https://bureaunull.com/images/og.jpg">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<script src="../js/vendor/gsap.min.js"></script>
+<script src="../js/vendor/ScrollTrigger.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Small business cybersecurity in Ireland: what actually matters in 2026",
+  "description": "Small business cybersecurity in Ireland, without the fear marketing: the five controls that stop most attacks, real breach statistics, and what a WAST actually buys you.",
+  "author": {
+    "@type": "Organization",
+    "name": "Bureau Null",
+    "url": "https://bureaunull.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Bureau Null",
+    "url": "https://bureaunull.com"
+  },
+  "datePublished": "2026-02-14",
+  "dateModified": "2026-02-14",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://bureaunull.com/journal/small-business-cybersecurity-ireland.html"
+  }
+}
+</script>
+<style>
+:root{--void:#060608;--panel:#0e0e12;--border:#1e1e28;--text:#e8e8ec;--dim:#9a9aa8;--violet:#00e676;--terminal:#00e676;--caution:#00e676;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--void);color:var(--text);line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--violet);color:var(--void)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--void)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--dim)}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all .5s;border-bottom:1px solid transparent;background:rgba(6,6,8,.8);backdrop-filter:blur(20px);border-bottom-color:var(--border)}
+nav.scrolled{padding:16px 0}
+.nav-inner{max-width:1300px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--text)}
+.logo span{background:linear-gradient(120deg,#f4f4f7 0%,#9a9aa8 30%,#e8e8ee 50%,#78788a 70%,#dcdce4 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:logoShine 7s linear infinite}
+@keyframes logoShine{to{background-position:200% center}}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--dim);transition:.3s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--violet);transition:.4s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:10px 24px;border:1px solid var(--violet);font-size:.85rem;font-weight:600;color:var(--violet);transition:.4s;font-family:'JetBrains Mono',monospace}
+.nav-cta:hover{background:var(--violet);color:var(--void)}
+
+.display{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+h1{font-size:clamp(3rem,7vw,6rem)}
+h2{font-size:clamp(1.5rem,3vw,2.5rem)}
+.label{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+section{padding:120px 0}
+
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.19,1,.22,1)}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* --- case study pages --- */
+.hero-case{min-height:70vh;display:flex;flex-direction:column;justify-content:center;padding:180px 0 60px}
+.hero-case .label{color:var(--violet);margin-bottom:24px;display:block}
+.hero-case h1{font-size:clamp(2.6rem,6vw,5rem);margin-bottom:24px}
+.hero-case .tagline{color:var(--dim);font-size:1.15rem;max-width:640px;line-height:1.7}
+.case-visual{aspect-ratio:16/7;overflow:hidden;border:1px solid var(--border);border-radius:4px;background:var(--void);margin-top:60px;position:relative}
+.case-visual img{width:100%;height:100%;object-fit:cover}
+.case-visual .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:4rem;color:rgba(255,255,255,.12)}
+.meta-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin:80px 0 0}
+.meta-cell{background:var(--panel);padding:24px}
+.meta-cell .label{margin-bottom:10px;display:block}
+.meta-cell .val{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;line-height:1.4}
+.case-section{padding:80px 0 0;max-width:860px}
+.case-section .label{color:var(--violet);margin-bottom:16px;display:block}
+.case-section h2{margin-bottom:28px}
+.case-section p{color:#b9b9c4;margin-bottom:18px;line-height:1.85}
+.built-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;max-width:1100px}
+.built-item{border:1px solid var(--border);border-radius:4px;padding:28px;background:var(--panel);transition:.4s}
+.built-item:hover{border-color:var(--violet)}
+.built-item .num{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--violet);letter-spacing:2px;display:block;margin-bottom:14px}
+.built-item h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;margin-bottom:10px}
+.built-item p{color:var(--dim);font-size:.92rem;line-height:1.7;margin:0}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;max-width:1100px}
+.result-item{border:1px solid var(--border);border-radius:4px;padding:32px 28px;background:var(--panel)}
+.result-metric{font-family:'Space Grotesk',sans-serif;font-size:2.3rem;font-weight:700;color:var(--violet);margin-bottom:12px;letter-spacing:-.02em}
+.result-item p{color:var(--dim);font-size:.9rem;line-height:1.65;margin:0}
+.pull-quote{border-left:2px solid var(--violet);padding:20px 0 20px 40px;margin:100px 0 0;max-width:760px}
+.pull-quote p{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;line-height:1.45;font-weight:500;color:var(--text);margin:0}
+.pull-quote cite{display:block;margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim);font-style:normal;letter-spacing:1.5px;text-transform:uppercase}
+.cta-panel{border:1px solid var(--border);border-radius:4px;background:var(--panel);padding:64px 48px;text-align:center;margin:100px 0 0}
+.cta-panel .label{color:var(--violet);margin-bottom:16px;display:block}
+.cta-panel h2{margin-bottom:16px}
+.cta-panel p{color:var(--dim);max-width:480px;margin:0 auto 36px;line-height:1.7}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 32px;font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;transition:.4s;border-radius:3px;display:inline-block}
+.btn-primary{border:1px solid var(--violet);color:var(--violet)}
+.btn-primary:hover{background:var(--violet);color:var(--void)}
+.btn-ghost{border:1px solid var(--border);color:var(--dim)}
+.btn-ghost:hover{border-color:var(--dim);color:var(--text)}
+.next-case{margin-top:80px;display:block;border-top:1px solid var(--border);padding-top:40px}
+.next-case .label{margin-bottom:12px;display:block}
+.next-case .next-name{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;transition:.3s}
+.next-case:hover .next-name{color:var(--violet)}
+
+/* --- journal index --- */
+.hero-journal{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:180px 0 80px}
+.hero-journal .label{color:var(--violet);margin-bottom:24px;display:block}
+.hero-journal h1{margin-bottom:20px}
+.hero-journal p{color:var(--dim);font-size:1.1rem;max-width:560px;line-height:1.7}
+.journal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.j-card{display:block;border:1px solid var(--border);border-radius:4px;background:var(--panel);overflow:hidden;transition:.5s}
+.j-card:hover{border-color:var(--violet);transform:translateY(-6px)}
+.j-card-img{aspect-ratio:16/9;overflow:hidden;background:var(--void);position:relative}
+.j-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.19,1,.22,1)}
+.j-card:hover .j-card-img img{transform:scale(1.08)}
+.j-card-img .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:2.4rem;color:rgba(255,255,255,.12)}
+.j-card-info{padding:24px}
+.j-card-info .label{margin-bottom:10px;display:block}
+.j-card-info .label.case-label{color:var(--violet)}
+.j-card-info h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;margin-bottom:10px;line-height:1.3}
+.j-card-info p{color:var(--dim);font-size:.88rem;line-height:1.6;margin-bottom:16px}
+.j-card-meta{display:flex;gap:12px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--dim)}
+
+/* --- article pages --- */
+.article-hero{padding:200px 0 60px;max-width:860px}
+.article-hero .label{color:var(--violet);margin-bottom:24px;display:block}
+.article-hero h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-bottom:24px}
+.article-hero .article-meta{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--dim);letter-spacing:1px}
+.article-body{max-width:760px;padding-bottom:20px}
+.article-body h2{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;margin:56px 0 20px;letter-spacing:-.02em;line-height:1.2}
+.article-body h3{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;margin:36px 0 14px;line-height:1.3}
+.article-body p{color:#b9b9c4;margin-bottom:18px;line-height:1.85}
+.article-body ul,.article-body ol{color:#b9b9c4;margin:0 0 18px 22px;line-height:1.85}
+.article-body li{margin-bottom:8px}
+.article-body strong{color:var(--text)}
+.article-body a{color:var(--violet);border-bottom:1px solid transparent;transition:.3s}
+.article-body a:hover{border-bottom-color:var(--violet)}
+.article-body blockquote{border-left:2px solid var(--violet);padding:8px 0 8px 28px;margin:32px 0;font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--text);line-height:1.5}
+
+@media(max-width:960px){
+.journal-grid{grid-template-columns:1fr 1fr}
+.built-grid,.results-grid{grid-template-columns:1fr}
+.meta-strip{grid-template-columns:1fr 1fr}
+.nav-links{display:none}
+}
+@media(max-width:600px){
+.journal-grid{grid-template-columns:1fr}
+.cta-panel{padding:48px 24px}
+}
+
+.footer{padding:90px 0 40px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px}
+.footer-brand .logo{font-size:1.4rem;margin-bottom:16px;display:inline-block}
+.footer-brand p{color:var(--dim);font-size:.92rem;line-height:1.7;max-width:320px}
+.footer-col h4{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:20px}
+.footer-col a{display:block;color:var(--dim);margin-bottom:10px;font-size:.88rem;transition:.3s}
+.footer-col a:hover{color:var(--violet)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);font-size:.8rem;color:var(--dim);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;gap:12px}
+@media(max-width:960px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="../brand.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">Bureau<span>Null</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../work.html">Work</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../index.html#pricing">Pricing</a></li>
+      <li><a href="../security.html">Security</a></li>
+      <li><a href="../journal.html">Journal</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a class="nav-cta" href="../index.html#pricing">Start a project</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero-case" style="min-height:auto">
+  <div class="wrap">
+    <div class="article-hero">
+      <span class="label">JOURNAL // SECURITY</span>
+      <h1 class="display">Small business cybersecurity in Ireland: what actually matters in 2026</h1>
+      <div class="article-meta">Bureau Null &middot; 2026-02-14 &middot; 8 min read</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <article class="article-body">
+
+<p>Most writing about small business cybersecurity in Ireland follows a formula: frightening statistic, list of twenty things you must do, invitation to buy something. This article is shorter and more useful. The honest truth is that a handful of controls stop the overwhelming majority of attacks against small businesses, and they are boring, cheap and well understood. Here is what actually matters, in the order it matters.</p>
+
+<h2>Why small businesses are the target now</h2>
+<p>Attackers automate. A script does not care whether it is testing a bank or a butcher's booking page; it scans for known weaknesses and reports back whatever answers. Industry breach reports have been consistent for years: small organisations now account for the majority of confirmed breaches, precisely because they run unpatched software and reused passwords. The typical Irish SME incident is not a mastermind targeting you. It is an automated WordPress exploit, a phished Office 365 password, or an invoice-scam email that looked exactly like your supplier.</p>
+<p>The Garda National Cyber Crime Bureau and the NCSC both report the same pattern: business email compromise and ransomware delivered through phishing cause the largest financial losses to Irish small firms — not exotic zero-days.</p>
+
+<h2>The five controls that do the work</h2>
+<h3>1. Phishing-resistant logins</h3>
+<p>Turn on multi-factor authentication for email, banking and anything holding customer data — and prefer app or hardware-key MFA over SMS. Email is the master key to your business: whoever controls your inbox controls your password resets. This single control stops the most common attack on Irish SMEs dead.</p>
+<h3>2. Updates within a week, not a year</h3>
+<p>The majority of website compromises exploit vulnerabilities that were patched months before the attack. If your site runs WordPress, the plugins are the risk: each one is code you did not write, updated on someone else's schedule. Either commit to weekly updates, or remove the need by running a site with no plugin stack at all.</p>
+<h3>3. Backups you have actually tested</h3>
+<p>Ransomware is unremarkable if you can restore yesterday's data in an afternoon. The rule is 3-2-1: three copies, two media, one off-site. The detail that matters is the test — an untested backup is a rumour, not a backup. Restore one file this week. If you cannot, you do not have backups.</p>
+<h3>4. Payment and bank-verification procedures</h3>
+<p>Invoice fraud — a fake "we changed our bank details" email — costs Irish businesses more than most technical attacks. The fix is procedural, not technical: any change of payment details is confirmed by a phone call to a number you already had. Write it down, tell your accounts person, done.</p>
+<h3>5. Know what your website exposes</h3>
+<p>If your website takes bookings, payments or personal data, it is an application, and applications have attack surface. The OWASP Top 10 — injection, broken access control, misconfiguration — reads abstract until a tester demonstrates it on your own site in an afternoon. That demonstration is what a Web Application Security Test is: an authorised professional attacking your site the way a criminal would, then handing you the list of what to fix, scored so you know what matters.</p>
+
+<h2>The GDPR dimension</h2>
+<p>If your website collects names, emails or payment details — and almost every business site does — you are a data controller under GDPR, and the Data Protection Commission is not a theoretical presence. Irish SMEs have been investigated and fined. The practical consequence of a breach is not just the ransom or the fraud loss: it is the mandatory 72-hour breach notification, the possibility of DPC scrutiny, and the email you have to send to every affected customer. Good hygiene is also cheap legal defence: documented MFA, patching and tested backups are exactly the "appropriate technical and organisational measures" the regulation asks for. A business that can show those measures after an incident is in a different universe from one that cannot.</p>
+
+<h2>What a WAST actually buys you</h2>
+<p>A WAST engagement for a small business site is measured in days, not weeks, and the output is plain: findings ranked by severity under CVSS scoring, reproduction steps, and a remediation plan. It answers the only question that matters — if someone attacks this, how far do they get? — with evidence instead of hope. Increasingly, Irish enterprise procurement and cyber-insurance underwriters ask for exactly this document before signing. Our <a href="../security.html">fixed-price security audit</a> is built to produce it, and the <a href="../cases/2020-vanguard-wast.html">Vanguard WAST engagement</a> shows what the process looks like end to end.</p>
+
+<h2>What you can safely ignore</h2>
+<p>You almost certainly do not need a SOC, a threat-intelligence subscription, or anything with "AI-powered" in the name. The gap between Irish SMEs and attackers is not sophistication; it is the five controls above, done consistently. Spend on those before anything with a dashboard. The same logic applies to compliance theatre: a framed certificate on the wall stops no attacks, but a tested backup and an enforced MFA policy stop most of them. Buy outcomes, not artefacts.</p>
+
+<h2>The honest conclusion</h2>
+<p>Cybersecurity for a small Irish business is not an arms race; it is hygiene. MFA on email, prompt updates, tested backups, a phone-call rule for bank details, and a periodic security test of whatever faces the internet. That is a weekend of work and a modest annual cost — against an average SME breach that runs into five figures before the downtime is counted.</p>
+
+    </article>
+
+    <div class="cta-panel reveal" style="max-width:1100px">
+      <span class="label">// next step</span>
+      <h2 class="display">Want to know what your website exposes?</h2>
+      <p>Our Web Application Security Test answers it with evidence: OWASP methodology, CVSS scoring, and a remediation plan your developer can actually follow.</p>
+      <div class="cta-btns">
+        <a class="btn btn-primary" href="../security.html#configure">Configure your audit &rarr;</a>
+        <a class="btn btn-ghost" href="../cases/2020-vanguard-wast.html">Read a WAST case study &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">Bureau<span>Null</span></a>
+        <p>A small, senior team designing, hand-coding and security-testing websites for clients worldwide. Serious goals, serious budgets — available anywhere.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="../index.html">Home</a>
+        <a href="../work.html">Work</a>
+        <a href="../about.html">About</a>
+        <a href="../index.html#pricing">Pricing</a>
+        <a href="../security.html">Security</a>
+        <a href="../journal.html">Journal</a>
+        <a href="../careers.html">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="../policies.html#terms">Terms of Service</a>
+        <a href="../policies.html#payment">Payment Terms</a>
+        <a href="../policies.html#refund">Refund Policy</a>
+        <a href="../policies.html#privacy">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:hello@bureaunull.com">hello@bureaunull.com</a>
+        <a href="../index.html#contact">Contact form</a>
+        <span style="color:var(--dim);font-size:.85rem;display:block;margin-top:8px">Response within 4 working hours. Worldwide.</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Bureau Null. All rights reserved.</div>
+      <div>No cookies · No trackers · No ads &nbsp;·&nbsp; ~$ exit 0</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); obs.unobserve(e.target); } });
+}, {threshold: .1});
+reveals.forEach(el => obs.observe(el));
+</script>
+
+<script src="../brand.js"></script>
+</body>
+</html>

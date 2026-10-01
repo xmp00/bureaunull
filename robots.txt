@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /flag.html
+
+Sitemap: https://bureaunull.com/sitemap.xml
