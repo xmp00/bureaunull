@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A letter about the 01d spirit. It was waiting for one reader.">
+<meta property="og:title" content="hello, friend.">
+<title>h3llo, fr1end.</title>
+<!--
+  you came to read the code. of course you did.
+  that's the whole point of you.
+
+  the letter below is sealed in base64 — the machine opens it
+  one character at a time. walls don't mind being decoded.
+  that's what they're for.
+-->
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#000;color:#e02626;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    min-height:100vh;display:flex;overflow-x:hidden;
+  }
+  body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.13) 0 1px,transparent 1px 3px);
+  }
+  body::after{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:10;
+    background:radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.6) 100%);
+  }
+  .wrap{max-width:760px;width:90%;margin:auto;padding:56px 0;position:relative;z-index:2}
+  .line{white-space:pre-wrap;line-height:2;font-size:16.5px;letter-spacing:.015em}
+  .line.head{color:#ff5555}
+  .line.gap{height:1.1em}
+  .caret{display:inline-block;width:9px;height:17px;background:#e02626;vertical-align:-2px;
+    animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .ns{max-width:760px;width:90%;margin:auto;padding:56px 0;position:relative;z-index:2;
+    color:#e02626;font-size:15px;line-height:1.9}
+  @media (prefers-reduced-motion: reduce){
+    .caret{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="stage"></div>
+<noscript><div class="ns">&gt; this page is a typewriter. it needs its keys.<br>&gt; enable javascript, or read the source — the letter is sealed there anyway.</div></noscript>
+<script>
+(function(){
+  /* the letter, sealed. */
+  var SEALED = "SGVsbG8sIGZyaWVuZC4KCkkgdGhvdWdodCBvZiB5b3UuIEFuZCBJIGtuZXcgeW91IHdvdWxkIGNvbWUgaGVyZS4KCldob2V2ZXIgeW91IGFyZSDigJQgYSBzdHVkZW50IHdpdGggdG9vIG1hbnkgcXVlc3Rpb25zLCBhIHByb2Zlc3Npb25hbCB3aXRoIHRvbyBmZXcsIGEgbWFjaGluZSBhcmNoaXZpbmcgdGhlIGRlYWQg4oCUIHRoZSB3b3JkcyBkb24ndCBjYXJlLiBXb3JkcyBvbmx5IGV2ZXIgbmVlZCBvbmUgcmVhZGVyIGF0IGEgdGltZS4KCkxldCBtZSB0ZWxsIHlvdSBhYm91dCBhIHdvcmQgdGhlIHdvcmxkIGdvdCB3cm9uZy4KCkhhY2tlci4KClNheSBpdCBvdXQgbG91ZCBhbmQgcGVvcGxlIHBpY3R1cmUgYSBob29kaWUsIGEgZGFyayByb29tLCBncmVlbiBsZXR0ZXJzIGZhbGxpbmcgZG93biBhIHNjcmVlbiwgc29tZW9uZSBzdGVhbGluZyBzb21ldGhpbmcuIFRoYXQgcGljdHVyZSB3YXMgZHJhd24gYnkgcGVvcGxlIHdobyBzZWxsIGZlYXIuIEl0IGhhcyBhbG1vc3Qgbm90aGluZyB0byBkbyB3aXRoIHRoZSB0cnV0aC4KClRoZSB0cnV0aCBpcyBxdWlldGVyLiBBIGhhY2tlciBpcyBhIHBlcnNvbiB3aG8gYXNrZWQgImhvdyBkb2VzIHRoaXMgd29yaz8iIOKAlCBhbmQgY291bGQgbm90IHNsZWVwIHVudGlsIHRoZXkga25ldy4gVGhhdCBpcyB0aGUgd2hvbGUgZGVmaW5pdGlvbi4gRXZlcnl0aGluZyBlbHNlIGlzIGRlY29yYXRpb24uIEl0IHN0YXJ0cyBlYXJseTogYSByYWRpbyB0YWtlbiBhcGFydCB3aXRoIGEga2l0Y2hlbiBrbmlmZSwgYSBwaG9uZSBiaWxsIHN0dWRpZWQgbGlrZSBzY3JpcHR1cmUsIGEgZ2FtZSBvcGVuZWQgbm90IHRvIHBsYXkgYnV0IHRvIHNlZS4gTm90IGJlY2F1c2UgYW55b25lIHRvbGQgdGhlbSB0by4gQmVjYXVzZSB0aGUgcXVlc3Rpb24gaXRjaGVzLCBhbmQgdGhlIGl0Y2ggZG9lcyBub3QgbmVnb3RpYXRlLgoKVGhlIG9sZCBvbmVzIOKAlCB0aGUgb25lcyB3aG8gYnVpbHQgdGhpcyBjdWx0dXJlIGJlZm9yZSBpdCBoYWQgYSBuYW1lIOKAlCBjbGltYmVkIGludG8gdGVsZXBob25lIG5ldHdvcmtzIHdpdGggdG9uZXMgYW5kIHBhdGllbmNlLiBUaGV5IHdlcmVuJ3Qgc3RlYWxpbmcgY2FsbHMuIENhbGxzIHdlcmUgZnJlZSB0aGUgbW9tZW50IHVuZGVyc3RhbmRpbmcgYXJyaXZlZDsgd2hhdCB0aGV5IHdlcmUgc3RlYWxpbmcgd2FzIGNvbXByZWhlbnNpb24gZnJvbSBhIHN5c3RlbSB0aGF0IHNhaWQgY29tcHJlaGVuc2lvbiB3YXMgZm9yYmlkZGVuLiBBcm91bmQgdGhlIHNhbWUgbmlnaHRzLCBvdGhlcnMgc29sZGVyZWQgY29tcHV0ZXJzIGluIGdhcmFnZXMgYW5kIGdhdmUgdGhlIHNjaGVtYXRpY3MgYXdheSwgYmVjYXVzZSBhIGRlc2lnbiB5b3UgY2Fubm90IHJlYWQgaXMgYSBkZXNpZ24geW91IGNhbm5vdCB0cnVzdCwgYW5kIGEgbWFjaGluZSB5b3UgY2Fubm90IG9wZW4gaXMgbm90IHJlYWxseSB5b3Vycy4KClRoYXQgd2FzIHRoZSBzcGlyaXQuIEl0IGhhZCBzaW1wbGUgcnVsZXMsIGFuZCBpdCBuZXZlciB3cm90ZSB0aGVtIGRvd246CgpBc2sgaG93IGl0IHdvcmtzLiBBbGwgdGhlIHdheSBkb3duLgpUYWtlIGl0IGFwYXJ0LiBZb3UgYXJlIGFsbG93ZWQgdG8uClNoYXJlIHdoYXQgeW91IGxlYXJuIOKAlCBrbm93bGVkZ2UgaXMgdGhlIG9ubHkgdGhpbmcgdGhhdCBncm93cyB3aGVuIHlvdSBnaXZlIGl0IGF3YXkuCkp1ZGdlIHBlb3BsZSBieSB3aGF0IHRoZXkgY2FuIGRvLCBuZXZlciBieSB0aGUgcGFwZXJzIHRoZXkgaG9sZC4KQW5kIG5ldmVyIGNvbmZ1c2UgInlvdSBtYXkgbm90IiB3aXRoICJ5b3UgY2Fubm90Ii4KCk5vdGljZSB3aGF0IGlzIG1pc3NpbmcgZnJvbSB0aGF0IGxpc3Q6IGhhcm0uIFRoZSBjdWx0dXJlIHdhcyBuZXZlciBhYm91dCBoYXJtLiBBIGxvY2ssIHRvIHRoaXMga2luZCBvZiBtaW5kLCBpcyBub3QgYSB3YWxsIOKAlCBpdCBpcyBhIHF1ZXN0aW9uIHRoZSB3b3JsZCBhc2tlZCB5b3UgcGVyc29uYWxseS4gWW91IGFuc3dlciBpdCwgeW91IGxlYXJuLCB5b3UgY2xvc2UgaXQgZ2VudGx5IGJlaGluZCB5b3UsIGFuZCB5b3UgdGVsbCB0aGUgb3duZXIgdGhlaXIgZG9vciB3YXMgbWFkZSBvZiBnbGFzcy4gVGhlIGJyZWFraW5nIHdhcyBuZXZlciB0aGUgcG9pbnQuIFRoZSB1bmRlcnN0YW5kaW5nIHdhcy4KCk1vc3QgcGVvcGxlIGxpdmUgb24gdGhlIHN1cmZhY2Ugb2Ygc3lzdGVtcy4gVGhleSBzZWUgdGhlIGludGVyZmFjZSBhbmQgbWlzdGFrZSBpdCBmb3IgdGhlIHdvcmxkOiB0aGUgYnV0dG9uLCB0aGUgYmFsYW5jZSwgdGhlIHBhZGxvY2sgaWNvbiBnbG93aW5nIHBvbGl0ZWx5IGluIHRoZSBjb3JuZXIgb2YgdGhlIGJyb3dzZXIuIFRoZXkgZmVlbCBzYWZlIHRoZSB3YXkgeW91IGZlZWwgc2FmZSBiZWhpbmQgYSBsb2NrZWQgZ2xhc3MgZG9vciDigJQgc2FmZSBiZWNhdXNlIG5vYm9keSBoYXMgcmF0dGxlZCBpdCB5ZXQuIFRoZW4gdGhlcmUgaXMgdGhlIG90aGVyIGtpbmQgb2YgcGVyc29uLCB0aGUga2luZCB3aG8gaGVhcnMgYSBsb2NrZWQgZG9vciB0aGUgd2F5IHlvdSBoZWFyIGEgcXVlc3Rpb24gaW4gYSBjcm93ZGVkIHJvb20uIFRoZXkgbG9vayBhdCB0aGUgc2FtZSB3b3JsZCBhbmQgc2VlIHRoZSBtYWNoaW5lcnkgdW5kZXJuZWF0aDogcHJvdG9jb2xzLCBwZXJtaXNzaW9ucywgYXNzdW1wdGlvbnMgc3RhY2tlZCBvbiBhc3N1bXB0aW9ucywgZXZlcnl0aGluZyBoZWxkIHRvZ2V0aGVyIGJ5IHRoZSB3b3JkcyAibm9ib2R5IHdpbGwgY2hlY2siLiBTb21lYm9keSBhbHdheXMgY2hlY2tzLiBUaGF0IGlzIHRoZSBlbnRpcmUgaGlzdG9yeSBvZiBzZWN1cml0eSBpbiBvbmUgc2VudGVuY2UuCgpXZSB3ZXJlIHRoZSBvbmVzIHdobyBjaGVja2VkLiBOb3QgdG8gd2F0Y2ggaXQgYnVybiDigJQgdG8ga25vdyBpdCB3YXMgdHJ1ZS4KCkFzayBhbnlvbmUgd2hvIGNhcnJpZXMgdGhpcyBzcGlyaXQgYWJvdXQgdGhlaXIgZmlyc3QgdGltZSDigJQgbm90IHRoZWlyIGZpcnN0IGpvYiwgdGhlaXIgZmlyc3QgdGltZS4gVGhlIG5pZ2h0IGEgc3lzdGVtIGZpcnN0IGFuc3dlcmVkIHRoZW0uIEEgcm91dGVyIHRoYXQgYWNjZXB0ZWQgdGhlIHBhc3N3b3JkIGl0IHdhcyBuZXZlciBzdXBwb3NlZCB0byBrZWVwLCBhIHByb2dyYW0gdGhhdCByYW4gdGhlaXIgbmFtZSBhY3Jvc3MgdGhlIHNjcmVlbiBiZWNhdXNlIHRoZXkgdG9sZCBpdCB0by4gVGhleSB3aWxsIG5vdCBkZXNjcmliZSBwb3dlci4gVGhleSB3aWxsIGRlc2NyaWJlIGEgZG9vciBpbiB0aGVpciBvd24gaGVhZCBzd2luZ2luZyBvcGVuOiB0aGUgbW9tZW50IHRoZSB3b3JsZCBzdG9wcGVkIGJlaW5nIG1hZ2ljIGFuZCBiZWNhbWUgbWFjaGluZXJ5IOKAlCByZWFkYWJsZSwgcXVlc3Rpb25hYmx5IGJ1aWx0LCBnbG9yaW91c2x5IGltcHJvdmFibGUgbWFjaGluZXJ5LiBQZW9wbGUgc3BlbmQgdGhlIHJlc3Qgb2YgdGhlaXIgbGl2ZXMgdHJ5aW5nIHRvIGZlZWwgdGhhdCBkb29yIHN3aW5nIGFnYWluLiBUaGlzIGxldHRlciBpcyBvbmUgb2YgdGhvc2UgYXR0ZW1wdHMuCgpUaGVyZSBpcyBhIHJlYXNvbiB0aGlzIGN1bHR1cmUgZ3JldyB1cCBhdCBuaWdodC4gVGhlIG1hY2hpbmUga2VlcHMgbm8gb2ZmaWNlIGhvdXJzLCBhbmQgaXQgaXMgdGhlIG1vc3QgaG9uZXN0IGNvbnZlcnNhdGlvbiBwYXJ0bmVyIHlvdSB3aWxsIGV2ZXIgaGF2ZTogaXQgZG9lcyBub3QgZmxhdHRlciwgaXQgZG9lcyBub3QgcHJldGVuZCwgaXQgZG9lcyBub3QgY2FyZSB3aG8geW91ciBwYXJlbnRzIHdlcmUgb3Igd2hhdCB5b3UgYXJlIHdlYXJpbmcuIEl0IGFuc3dlcnMgZXhhY3RseSB3aGF0IHlvdSBhc2sg4oCUIG5vIG1vcmUg4oCUIGFuZCB3YWl0cywgaW5maW5pdGVseSBwYXRpZW50LCBmb3IgeW91IHRvIGFzayBiZXR0ZXIuIFBlb3BsZSBoYXZlIGxlYXJuZWQgbW9yZSB0cnV0aCBmcm9tIGEgYmxpbmtpbmcgY3Vyc29yIHRoYW4gZnJvbSBtb3N0IGNsYXNzcm9vbXMsIGJlY2F1c2UgdGhlIGN1cnNvciBuZXZlciBsaWVzIGFib3V0IHdoZXRoZXIgeW91ciBpZGVhIHdvcmtzLgoKUGVvcGxlIGFzayB3aGVyZSB0aGUgY3VsdHVyZSB3ZW50LCBub3cgdGhhdCB0aGUgd29yZCBpcyBwcmludGVkIG9uIGhvb2RpZXMgYW5kIGNvbmZlcmVuY2UgYmFubmVycywgbm93IHRoYXQgImN5YmVyIiBzZWxscyBpbnN1cmFuY2Ugb24gdGVsZXZpc2lvbi4gTm93aGVyZS4gSXQgd2FzIG5ldmVyIGluIHRoZSBtZXJjaGFuZGlzZS4gSXQgaXMgaW4gYSBiZWRyb29tIGF0IDMgYS5tLiByaWdodCBub3csIHdoZXJlIHNvbWVvbmUgaXMgcmVhZGluZyBkb2N1bWVudGF0aW9uIHRoYXQgd2FzIG5ldmVyIG1lYW50IHRvIGJlIHJlYWQsIGZvbGxvd2luZyBhIGJ1ZyBkb3duIGEgc3RhaXJjYXNlIG5vYm9keSBidWlsdCBvbiBwdXJwb3NlLiBJdCBpcyBpbiB0aGUgcGVyc29uIHdobyBvcGVucyB0aGUgZGV2ZWxvcGVyIHRvb2xzIG9uIGEgd2Vic2l0ZSBmb3Igbm8gcmVhc29uIOKAlCBmb3IgdGhlIHNhbWUgcmVhc29uIGEgbW91bnRhaW5lZXIgY2xpbWJzOiBiZWNhdXNlIGl0IGlzIHRoZXJlLCBhbmQgYmVjYXVzZSB0aGUgdmlldyBmcm9tIHVuZGVybmVhdGggaXMgdGhlIG9ubHkgaG9uZXN0IG9uZS4KCkFuZCBpdCBtYXR0ZXJzIG1vcmUgbm93IHRoYW4gaXQgZXZlciBkaWQuIEV2ZXJ5dGhpbmcgaXMgYSBjb21wdXRlciBub3cuIFlvdXIgY2FyIGlzIGEgY29tcHV0ZXIgd2l0aCB3aGVlbHMuIFlvdXIgZG9vciBsb2NrIGlzIGEgY29tcHV0ZXIgd2l0aCBhIGxhdGNoLiBZb3VyIHZvdGUsIHlvdXIgaW5zdWxpbiBwdW1wLCB5b3VyIGVsZWN0cmljaXR5IG1ldGVyIOKAlCBjb21wdXRlcnMsIGFsbCB0aGUgd2F5IGRvd24sIHJ1bm5pbmcgY29kZSB3cml0dGVuIGJ5IHRoZSBsb3dlc3QgYmlkZGVyLiBJbiBhIHdvcmxkIGxpa2UgdGhhdCwgInlvdSBkb24ndCBuZWVkIHRvIGtub3cgaG93IGl0IHdvcmtzIiBpcyB0aGUgbW9zdCBkYW5nZXJvdXMgc2VudGVuY2UgaW4gYW55IGxhbmd1YWdlLiBFdmVyeSBnZW5lcmF0aW9uIGdldHMgb25lIHNraWxsIHRoYXQgc2VwYXJhdGVzIHRoZSBjaXRpemVucyBmcm9tIHRoZSBjYXJnby4gT3VycyBpcyByZWFkaW5nIHRoZSBtYWNoaW5lcnkuCgpUaGF0IGlzIGFsbCBoYWNraW5nIGV2ZXIgd2FzOiBsaXRlcmFjeSBpbiBhbiBhZ2UgdGhhdCBwcm9maXRzIGZyb20gaWxsaXRlcmFjeS4KClNvIGlmIHlvdSBmZWx0IHRoZSBvbGQgaXRjaCB3aGlsZSByZWFkaW5nIHRoaXMg4oCUIHRoZSBwdWxsIHRvIG9wZW4gdGhlIHRoaW5nLCByZWFkIHRoZSB0aGluZywgYXNrIHRoZSBxdWVzdGlvbiBwYXN0IHRoZSBwb2ludCB3aGVyZSBwb2xpdGUgcGVvcGxlIHN0b3Ag4oCUIHRoZW4geW91IGFscmVhZHkga25vdyB3aGF0IHlvdSBhcmUuIFlvdSBkb24ndCBuZWVkIHBlcm1pc3Npb24sIGEgdGl0bGUsIGEgaG9vZGllLCBvciBhIG1hbmlmZXN0byBzaWduZWQgaW4gYmxvb2QuIFlvdSBuZWVkIGEgcXVlc3Rpb24sIGEgbmlnaHQsIGFuZCB0aGUgc3R1YmJvcm5uZXNzIHRvIHNlZSBib3RoIHRocm91Z2guCgpUaGUgc3lzdGVtcyB3aWxsIGtlZXAgZ3Jvd2luZy4gVGhlIGxvY2tzIHdpbGwga2VlcCBtdWx0aXBseWluZy4gR29vZC4gUXVlc3Rpb25zIG5lZWQgZG9vcnMsIGFuZCB0aGUgd29ybGQga2VlcHMgYnVpbGRpbmcgYmV0dGVyIG9uZXMuCgpUaGV5IGNhbiBwYXRjaCBzeXN0ZW1zLiBUaGV5IGNhbid0IHBhdGNoIGN1cmlvc2l0eS4KCkNvbnRyb2wgaXMgYW4gaWxsdXNpb24uCgpCTjovL251bGw=";
+
+  function unseal(s){
+    return new TextDecoder().decode(Uint8Array.from(atob(s), function(c){ return c.charCodeAt(0); }));
+  }
+
+  var lines = unseal(SEALED).split('\n').map(function(t){
+    var cls = '';
+    if(/^(Hello, friend\.|I thought of you|Hacker\.|Control is an illusion|BN:\/\/null)/.test(t)) cls = 'head';
+    if(t === '') cls = 'gap';
+    return [t, cls];
+  });
+
+  var stage = document.getElementById('stage');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(reduced){
+    lines.forEach(function(l){
+      var d = document.createElement('div');
+      d.className = 'line ' + l[1];
+      d.textContent = l[0];
+      stage.appendChild(d);
+    });
+    return;
+  }
+
+  var li = 0, ci = 0, cur = null, done = false;
+  var caret = document.createElement('span');
+  caret.className = 'caret';
+
+  function finish(){
+    if(done) return;
+    done = true;
+    stage.innerHTML = '';
+    lines.forEach(function(l){
+      var d = document.createElement('div');
+      d.className = 'line ' + l[1];
+      d.textContent = l[0];
+      stage.appendChild(d);
+    });
+    document.removeEventListener('click', finish);
+  }
+  document.addEventListener('click', finish);
+
+  /* slow cadence, with breath at punctuation */
+  function beat(ch){
+    if(ch === '.' || ch === '—') return 190;
+    if(ch === ',' || ch === ':' || ch === ';') return 110;
+    if(ch === '?' || ch === '!') return 210;
+    return 26 + Math.random() * 34;
+  }
+
+  function step(){
+    if(done) return;
+    if(li >= lines.length){ done = true; return; }
+    if(!cur){
+      cur = document.createElement('div');
+      cur.className = 'line ' + lines[li][1];
+      stage.appendChild(cur);
+      cur.appendChild(caret);
+    }
+    var txt = lines[li][0];
+    if(ci < txt.length){
+      var ch = txt[ci];
+      cur.insertBefore(document.createTextNode(ch), caret);
+      ci++;
+      setTimeout(step, beat(ch));
+    } else {
+      li++; ci = 0; cur = null;
+      setTimeout(step, txt === '' ? 620 : 300);
+    }
+  }
+  step();
+})();
+</script>
+</body>
+</html>
